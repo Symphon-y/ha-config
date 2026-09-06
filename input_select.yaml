@@ -5,3 +5,15 @@ mead_active_hydrometer:
     - sensor.hivemind_tilt_red_specific_gravity
     - sensor.hivemind_tilt_pink_specific_gravity
   initial: sensor.hivemind_tilt_black_specific_gravity
+
+# Which camera the wall panel shows. Six feeds at once is a security desk, not a
+# glance surface; one at a time with a fast switch is the useful version.
+wall_panel_camera:
+  name: Wall Panel Camera
+  options:
+    - Front Door
+    - Garage
+    - Side Drive
+    - Back Yard
+  initial: Front Door
+  icon: mdi:cctv
