@@ -138,11 +138,12 @@ views:
             icon: mdi:cctv
 
           - type: picture-entity
-            entity: camera.front_door_last_recording
-            camera_view: auto
+            entity: camera.front_door_live_view
+            camera_image: camera.front_door_live_view
+            camera_view: live
+            fit_mode: contain
             show_name: false
             show_state: false
-            aspect_ratio: "16:9"
 
           - type: tile
             entity: weather.forecast_home
@@ -169,3 +170,16 @@ views:
             entity: sensor.hivemind_tilt_red_specific_gravity
             name: Tilt Red
             icon: mdi:circle-outline
+
+          - type: heading
+            heading: Playing
+            heading_style: subtitle
+            icon: mdi:play-circle-outline
+
+          - type: tile
+            entity: media_player.living_room_television
+            name: Living Room TV
+
+          - type: tile
+            entity: media_player.bedroom_speaker
+            name: Bedroom Speaker
