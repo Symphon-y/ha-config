@@ -82,6 +82,9 @@ views:
             heading_style: subtitle
             icon: mdi:television-classic
 
+          # Art Mode is an IR command, not an activity. The command demonstrably changes
+          # the TV — it is what stranded it before Wake existed. The activity of the same
+          # name reports success and does nothing.
           - type: button
             name: Art Mode
             icon: mdi:brush
@@ -89,11 +92,12 @@ views:
               columns: 6
             tap_action:
               action: perform-action
-              perform_action: select.select_option
+              perform_action: remote.send_command
               target:
-                entity_id: select.harmony_hub_activities
+                entity_id: remote.harmony_hub
               data:
-                option: Art Mode
+                device: Samsung TV
+                command: ArtMode
 
           - type: button
             name: Wake
