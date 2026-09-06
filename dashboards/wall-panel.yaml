@@ -93,7 +93,21 @@ views:
               target:
                 entity_id: select.harmony_hub_activities
               data:
-                option: Watch Tv
+                option: Watch TV
+
+          - type: button
+            name: Wake
+            icon: mdi:television-shimmer
+            grid_options:
+              columns: 6
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: PowerOn
 
           - type: button
             name: Power off
