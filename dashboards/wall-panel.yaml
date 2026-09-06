@@ -77,6 +77,192 @@ views:
             entity: person.star
             name: Star
 
+          - type: heading
+            heading: Television
+            heading_style: subtitle
+            icon: mdi:television-classic
+
+          - type: button
+            name: Watch TV
+            icon: mdi:television-play
+            grid_options:
+              columns: 6
+            tap_action:
+              action: call-service
+              service: select.select_option
+              target:
+                entity_id: select.harmony_hub_activities
+              data:
+                option: Watch TV
+
+          - type: button
+            name: PowerOff
+            icon: mdi:power
+            grid_options:
+              columns: 6
+            tap_action:
+              action: call-service
+              service: select.select_option
+              target:
+                entity_id: select.harmony_hub_activities
+              data:
+                option: PowerOff
+
+          - type: button
+            icon: mdi:image-frame
+            name: Art Mode
+            grid_options:
+              columns: 8
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: ArtMode
+
+          - type: button
+            icon: mdi:volume-mute
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: Mute
+
+          - type: button
+            icon: mdi:keyboard-return
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: Return
+
+          - type: button
+            icon: mdi:chevron-up
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: DirectionUp
+
+          - type: button
+            icon: mdi:home
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: Home
+
+          - type: button
+            icon: mdi:chevron-left
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: DirectionLeft
+
+          - type: button
+            icon: mdi:circle-slice-8
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: Select
+
+          - type: button
+            icon: mdi:chevron-right
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: DirectionRight
+
+          - type: button
+            icon: mdi:volume-minus
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: VolumeDown
+
+          - type: button
+            icon: mdi:chevron-down
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: DirectionDown
+
+          - type: button
+            icon: mdi:volume-plus
+            show_name: false
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: VolumeUp
+
+
       # --- Column 2: the lamps, by name --------------------------------------
       # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
       # rooms; light.tp_link_smart_bulb_694f is not. Amber icon means burning.
@@ -338,5 +524,5 @@ views:
             icon: mdi:play-circle-outline
 
           - type: tile
-            entity: media_player.living_room_television
-            name: Living Room
+            entity: media_player.living_room_television_qn65ls03dafxza
+            name: The Frame
