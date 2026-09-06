@@ -82,13 +82,16 @@ views:
             heading_style: subtitle
             icon: mdi:television-classic
 
-          # Art Mode over Samsung's WebSocket remote, not Harmony's IR.
+          # Art Mode via the SmartThings remote (SAMSUNG_VD_TV_HUB).
           #
-          # There is no IR code that means "art mode" on a Frame — the IR Art Mode button
-          # is the power toggle, which is why sending it looked identical to Power off.
-          # The official Samsung integration exposes no art-mode entity either, but its
-          # remote speaks WebSocket, where a short KEY_POWER on a Frame toggles into art
-          # rather than standby. Worth trying before adding a custom integration.
+          # Three transports reach this TV and each means something different by "power":
+          # Harmony IR (no art-mode code exists — the IR button is the power toggle, which
+          # is why it looked identical to Power off), the local Samsung WebSocket, and
+          # SmartThings' cloud API. This is the SmartThings one.
+          #
+          # Worth knowing: no entity across all 722 currently exposes art mode directly,
+          # so if this does not work the remaining option is a custom integration such as
+          # TheFab21/ha-samsungtv-smart, which provides a real switch with state.
           - type: button
             name: Art Mode
             icon: mdi:brush
