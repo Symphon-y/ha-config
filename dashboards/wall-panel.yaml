@@ -30,7 +30,7 @@ views:
           # Time and house state. No strftime padding modifiers (%-I, %-d): those are
           # glibc extensions and Home Assistant OS runs musl, where they raise.
           - type: markdown
-            text: >
+            content: >
               {% set h = now().hour % 12 %}
               {% set on = states.light | selectattr('state','eq','on') | list | count %}
               {% set home = [states('person.travis'), states('person.star')]
@@ -138,7 +138,7 @@ views:
             icon: mdi:cctv
 
           - type: picture-entity
-            entity: camera.front_door_live_view
+            entity: camera.front_door_last_recording
             camera_view: auto
             show_name: false
             show_state: false
