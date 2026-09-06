@@ -153,23 +153,54 @@ views:
             heading: Fermenting
             heading_style: subtitle
             icon: mdi:glass-mug-variant
+            visibility:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity: sensor.hivemind_tilt_black_specific_gravity
+                    state_not: unknown
+                  - condition: state
+                    entity: sensor.hivemind_tilt_pink_specific_gravity
+                    state_not: unknown
+                  - condition: state
+                    entity: sensor.hivemind_tilt_red_specific_gravity
+                    state_not: unknown
 
-          # Gravity is the number that matters; it moves over days, so a bare
-          # value is right and a graph would be noise at this size.
           - type: tile
             entity: sensor.hivemind_tilt_black_specific_gravity
             name: Tilt Black
             icon: mdi:circle-outline
+            visibility:
+              - condition: state
+                entity: sensor.hivemind_tilt_black_specific_gravity
+                state_not: unknown
+              - condition: state
+                entity: sensor.hivemind_tilt_black_specific_gravity
+                state_not: unavailable
 
           - type: tile
             entity: sensor.hivemind_tilt_pink_specific_gravity
             name: Tilt Pink
             icon: mdi:circle-outline
+            visibility:
+              - condition: state
+                entity: sensor.hivemind_tilt_pink_specific_gravity
+                state_not: unknown
+              - condition: state
+                entity: sensor.hivemind_tilt_pink_specific_gravity
+                state_not: unavailable
 
           - type: tile
             entity: sensor.hivemind_tilt_red_specific_gravity
             name: Tilt Red
             icon: mdi:circle-outline
+            visibility:
+              - condition: state
+                entity: sensor.hivemind_tilt_red_specific_gravity
+                state_not: unknown
+              - condition: state
+                entity: sensor.hivemind_tilt_red_specific_gravity
+                state_not: unavailable
 
           - type: heading
             heading: Playing
