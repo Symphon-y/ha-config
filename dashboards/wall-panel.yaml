@@ -15,6 +15,7 @@ views:
   # ---------------------------------------------------------------------------
   - title: Home
     path: home
+    theme: Wall Panel
     type: sections
     max_columns: 3
     dense_section_placement: true
@@ -33,26 +34,46 @@ views:
               **{{ now().strftime('%A') }}**, {{ now().strftime('%-d %B') }}
 
 
-              {% set on = states.light | selectattr('state','eq','on') | list | count %}
+              {% set on = states.light
+                   | selectattr('state','eq','on') | list | count %}
               {% set home = [states('person.travis'), states('person.star')]
-                             | select('eq','home') | list | count %}
+                   | select('eq','home') | list | count %}
+              {% set t = states('sensor.downstairs_temperature') %}
               ### {{ on }} {{ 'lamp' if on == 1 else 'lamps' }} lit
-              {{ states('sensor.downstairs_temperature') | round(0) }}°F downstairs ·
-              {{ home }} of 2 home
+              {% if t not in ['unknown','unavailable','none'] -%}
+              {{ t | float(0) | round(0) }}°F downstairs ·
+              {%- endif %} {{ home }} of 2 home
 
           - type: heading
             heading: Climate
             heading_style: subtitle
             icon: mdi:thermometer
 
-          - type: thermostat
+          - type: tile
             entity: climate.downstairs
+            name: Downstairs
             features:
+              - type: target-temperature
               - type: climate-hvac-modes
                 hvac_modes:
                   - heat
                   - cool
                   - "off"
+
+          - type: heading
+            heading: Home
+            heading_style: subtitle
+            icon: mdi:account-group
+
+          # Presence earns its place: it is the one thing on this panel that
+          # changes what you would do next.
+          - type: tile
+            entity: person.travis
+            name: Travis
+
+          - type: tile
+            entity: person.star
+            name: Star
 
       # --- Column 2: the lamps, by name --------------------------------------
       # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
