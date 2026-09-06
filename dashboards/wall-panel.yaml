@@ -83,17 +83,17 @@ views:
             icon: mdi:television-classic
 
           - type: button
-            name: Watch TV
-            icon: mdi:television-play
+            name: Art Mode
+            icon: mdi:brush
             grid_options:
               columns: 6
             tap_action:
-              action: call-service
-              service: select.select_option
+              action: perform-action
+              perform_action: select.select_option
               target:
                 entity_id: select.harmony_hub_activities
               data:
-                option: Watch TV
+                option: Art Mode
 
           - type: button
             name: Wake
@@ -242,7 +242,6 @@ views:
                 device: Samsung TV
                 command: Mute
 
-
       # --- Column 2: the lamps, by name --------------------------------------
       # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
       # rooms; light.tp_link_smart_bulb_694f is not. Amber icon means burning.
@@ -303,7 +302,6 @@ views:
             name: Bookshelf
             features:
               - type: light-brightness
-
 
       # --- Column 3: outside, and the mead -----------------------------------
       - type: grid
