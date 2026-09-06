@@ -5,6 +5,25 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
+# Dashboards.
+#
+# mode: storage keeps every existing UI-edited dashboard working untouched — they
+# continue to live in .storage and are edited in the browser as before.
+#
+# The wall panel is declared as YAML instead, because .storage cannot be committed
+# (it holds auth tokens) and a dashboard that is not in source control cannot be
+# reviewed, diffed or rolled back. The cost is losing the in-browser editor for
+# this one dashboard; the gain is that it is versioned.
+lovelace:
+  mode: storage
+  dashboards:
+    wall-panel:
+      mode: yaml
+      title: Wall Panel
+      icon: mdi:tablet-dashboard
+      show_in_sidebar: true
+      filename: dashboards/wall-panel.yaml
+
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml

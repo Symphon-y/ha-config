@@ -1,0 +1,121 @@
+# Wall Panel — "a dark room with lamps in it"
+#
+# Designed for an 11" tablet at 1280x800 CSS px, seen from across a room at night and
+# held in the hand up close. Every token below is chosen for that, not inherited.
+#
+# The one rule that makes the whole thing legible: AMBER MEANS ON. Warm amber is
+# reserved for lights that are actually burning, so the panel reads as a map of the
+# house from six feet away without parsing a word. Nothing else may use it.
+#
+# Fonts are deliberately the bundled stack — a wall panel must survive the network
+# being down, and a webfont fetch is a failure mode, not a design choice.
+
+Wall Panel:
+  # ---- Surfaces: one hue, lightness only ------------------------------------
+  # Night sky, blue-tinted near-black. Steps are 3-5% apart: felt, not seen.
+  background-base: "#0B0E14"
+  surface-1: "#12161F"
+  surface-2: "#171C27"
+  surface-3: "#1D2330"
+
+  # ---- The accent, and its restraint ----------------------------------------
+  accent-on: "#FFB454"        # 2700K lamplight - ON, and nothing else
+  accent-on-dim: "#C98A3E"    # the same lamp, dimmed
+  accent-glow: "rgba(255, 180, 84, 0.22)"
+  cold: "#7A9BB8"             # moonlight: off, away, cold, inert
+
+  # ---- Semantic, desaturated for dark ---------------------------------------
+  ok: "#6FBF8B"
+  warn: "#E5A84B"
+  alert: "#E06C75"
+
+  # ---- Text: four levels, because two is a flat hierarchy -------------------
+  ink-1: "#E8EAED"
+  ink-2: "#9BA3B0"
+  ink-3: "#6B7280"
+  ink-4: "#4B5563"
+
+  hairline: "rgba(255, 255, 255, 0.07)"
+  hairline-strong: "rgba(255, 255, 255, 0.12)"
+
+  # ---- Home Assistant bindings ----------------------------------------------
+  primary-color: "var(--accent-on)"
+  accent-color: "var(--accent-on)"
+  dark-primary-color: "var(--accent-on-dim)"
+  light-primary-color: "var(--accent-on)"
+
+  primary-background-color: "var(--background-base)"
+  secondary-background-color: "var(--surface-1)"
+  divider-color: "var(--hairline)"
+
+  primary-text-color: "var(--ink-1)"
+  secondary-text-color: "var(--ink-2)"
+  disabled-text-color: "var(--ink-4)"
+  text-primary-color: "var(--background-base)"
+
+  # Cards sit one step above the canvas. Dark mode gets a hairline ring rather
+  # than a drop shadow: depth shadows do not read on near-black.
+  card-background-color: "var(--surface-1)"
+  ha-card-background: "var(--surface-1)"
+  ha-card-border-radius: "16px"
+  ha-card-border-width: "1px"
+  ha-card-border-color: "var(--hairline)"
+  ha-card-box-shadow: "none"
+
+  # Sidebar shares the canvas colour. A different colour would fragment the screen
+  # into "sidebar world" and "content world".
+  sidebar-background-color: "var(--background-base)"
+  sidebar-text-color: "var(--ink-2)"
+  sidebar-selected-text-color: "var(--accent-on)"
+  sidebar-selected-icon-color: "var(--accent-on)"
+  sidebar-icon-color: "var(--ink-3)"
+
+  app-header-background-color: "var(--background-base)"
+  app-header-text-color: "var(--ink-2)"
+
+  # State colours. Amber for anything actively on; moonlight for everything at rest.
+  state-icon-color: "var(--ink-3)"
+  state-icon-active-color: "var(--accent-on)"
+  state-light-active-color: "var(--accent-on)"
+  state-switch-active-color: "var(--accent-on)"
+  state-fan-active-color: "var(--accent-on)"
+  state-binary_sensor-active-color: "var(--warn)"
+  state-climate-heat-color: "#FF8C42"
+  state-climate-cool-color: "var(--cold)"
+  state-media_player-active-color: "var(--accent-on)"
+  state-inactive-color: "var(--ink-4)"
+
+  # Tile cards: the workhorse. Icon block picks up amber when active.
+  tile-card-background: "var(--surface-1)"
+
+  # Controls are inset - slightly darker than their surroundings, so they read as
+  # "put something here" without needing heavy borders.
+  input-fill-color: "var(--surface-3)"
+  input-ink-color: "var(--ink-1)"
+  input-label-ink-color: "var(--ink-2)"
+  input-idle-line-color: "var(--hairline)"
+  input-hover-line-color: "var(--hairline-strong)"
+
+  slider-color: "var(--accent-on)"
+  slider-secondary-color: "var(--accent-on-dim)"
+  slider-track-color: "var(--surface-3)"
+
+  switch-checked-color: "var(--accent-on)"
+  switch-unchecked-color: "var(--ink-4)"
+
+  # Charts inherit the same restraint: one accent, then neutrals.
+  graph-colors: "var(--accent-on), var(--cold), var(--ok), var(--warn)"
+
+  # Larger than HA's default, because this is read at distance.
+  paper-font-body1_-_font-size: "15px"
+  paper-font-headline_-_font-weight: "600"
+
+  # Mushroom bindings, harmless when Mushroom is absent.
+  mush-rgb-state-light: "255, 180, 84"
+  mush-rgb-state-switch: "255, 180, 84"
+  mush-rgb-state-fan: "255, 180, 84"
+  mush-rgb-state-media-player: "255, 180, 84"
+  mush-rgb-disabled: "75, 85, 99"
+  mush-card-primary-font-size: "15px"
+  mush-card-secondary-font-size: "13px"
+  mush-control-height: "48px"

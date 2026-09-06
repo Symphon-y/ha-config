@@ -1,0 +1,148 @@
+# Wall Panel — the tablet dashboard.
+#
+# One view per deck page. The kiosk app swipes between views with a two-finger
+# gesture, so nothing here may depend on Home Assistant's tab bar.
+#
+# Laid out for 1280x800 CSS px landscape: three columns, filled edge to edge.
+# The previous dashboard used a single section, which is why half the panel was
+# empty in portrait.
+
+views:
+  # ---------------------------------------------------------------------------
+  # HOME — glanceable from across the room.
+  #
+  # Focal point: the house-state line. Everything else is demoted beneath it.
+  # ---------------------------------------------------------------------------
+  - title: Home
+    path: home
+    type: sections
+    max_columns: 3
+    dense_section_placement: true
+    sections:
+      # --- Column 1: what the house is doing right now ------------------------
+      - type: grid
+        column_span: 1
+        cards:
+          # The hero. Read at six feet: how many lamps are burning, how warm it
+          # is, whether anyone is in. Counts, not a list — a list would need
+          # reading, and this needs glancing.
+          - type: markdown
+            text: >
+              # {{ now().strftime('%-I:%M') }}
+
+              **{{ now().strftime('%A') }}**, {{ now().strftime('%-d %B') }}
+
+
+              {% set on = states.light | selectattr('state','eq','on') | list | count %}
+              {% set home = [states('person.travis'), states('person.star')]
+                             | select('eq','home') | list | count %}
+              ### {{ on }} {{ 'lamp' if on == 1 else 'lamps' }} lit
+              {{ states('sensor.downstairs_temperature') | round(0) }}°F downstairs ·
+              {{ home }} of 2 home
+
+          - type: heading
+            heading: Climate
+            heading_style: subtitle
+            icon: mdi:thermometer
+
+          - type: thermostat
+            entity: climate.downstairs
+            features:
+              - type: climate-hvac-modes
+                hvac_modes:
+                  - heat
+                  - cool
+                  - "off"
+
+      # --- Column 2: the lamps, by name --------------------------------------
+      # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
+      # rooms; light.tp_link_smart_bulb_694f is not. Amber icon means burning.
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Lamps
+            heading_style: subtitle
+            icon: mdi:lamp
+
+          - type: tile
+            entity: light.living_room
+            name: Living Room
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.fireplace
+            name: Fireplace
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.floor_lamp
+            name: Floor Lamp
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.stars_lamp
+            name: Stars
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.bookshelf_light
+            name: Bookshelf
+            features:
+              - type: light-brightness
+
+          # The one destructive action on the panel, so it sits last and alone.
+          - type: button
+            name: All lamps off
+            icon: mdi:lightbulb-group-off-outline
+            tap_action:
+              action: call-service
+              service: light.turn_off
+              target:
+                entity_id: all
+
+      # --- Column 3: outside, and the mead -----------------------------------
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Outside
+            heading_style: subtitle
+            icon: mdi:cctv
+
+          - type: picture-entity
+            entity: camera.front_door_live_view
+            camera_view: auto
+            show_name: false
+            show_state: false
+            aspect_ratio: "16:9"
+
+          - type: tile
+            entity: weather.forecast_home
+            name: Weather
+
+          - type: heading
+            heading: Fermenting
+            heading_style: subtitle
+            icon: mdi:glass-mug-variant
+
+          # Gravity is the number that matters; it moves over days, so a bare
+          # value is right and a graph would be noise at this size.
+          - type: tile
+            entity: sensor.hivemind_tilt_black_specific_gravity
+            name: Tilt Black
+            icon: mdi:circle-outline
+
+          - type: tile
+            entity: sensor.hivemind_tilt_pink_specific_gravity
+            name: Tilt Pink
+            icon: mdi:circle-outline
+
+          - type: tile
+            entity: sensor.hivemind_tilt_red_specific_gravity
+            name: Tilt Red
+            icon: mdi:circle-outline
