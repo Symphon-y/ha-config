@@ -1,0 +1,1396 @@
+{
+  "views": [
+    {
+      "title": "Home",
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "icon": "",
+              "heading": "Climate",
+              "heading_style": "title"
+            },
+            {
+              "show_current": true,
+              "show_forecast": true,
+              "type": "weather-forecast",
+              "entity": "weather.forecast_home",
+              "forecast_type": "hourly",
+              "name": {
+                "type": "device"
+              },
+              "grid_options": {
+                "columns": "full"
+              },
+              "forecast_slots": 6
+            },
+            {
+              "type": "thermostat",
+              "entity": "climate.downstairs",
+              "show_current_as_primary": true,
+              "grid_options": {
+                "columns": 12,
+                "rows": 5
+              }
+            },
+            {
+              "type": "humidifier",
+              "entity": "humidifier.plant_support",
+              "features": [
+                {
+                  "type": "humidifier-toggle"
+                }
+              ],
+              "name": {
+                "type": "area"
+              },
+              "show_current_as_primary": true,
+              "grid_options": {
+                "columns": 12,
+                "rows": 5
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.downstairs_temperature",
+              "name": {
+                "type": "area"
+              },
+              "vertical": false,
+              "features_position": "bottom"
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.downstairs_humidity",
+              "name": {
+                "type": "entity"
+              },
+              "vertical": false,
+              "features_position": "bottom"
+            },
+            {
+              "type": "tile",
+              "entity": "weather.forecast_home",
+              "name": "Wind Speed",
+              "icon": "mdi:weather-windy",
+              "show_entity_picture": true,
+              "hide_state": false,
+              "state_content": "wind_speed",
+              "vertical": false,
+              "features_position": "bottom"
+            },
+            {
+              "type": "tile",
+              "entity": "weather.forecast_home",
+              "name": "UV Index",
+              "icon": "mdi:sun-wireless",
+              "state_content": "uv_index",
+              "vertical": false,
+              "features_position": "bottom"
+            }
+          ],
+          "column_span": 1
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "icon": "",
+              "heading": "Security",
+              "heading_style": "title"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.front_door_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "camera_image": "camera.front_door_live_view",
+              "name": {
+                "type": "device"
+              },
+              "show_entity_picture": true
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "cover",
+              "type": "picture-entity",
+              "entity": "camera.front_drive_right_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "camera_image": "camera.front_drive_right_live_view",
+              "show_entity_picture": true
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "camera_image": "camera.back_yard_live_view",
+              "entity": "camera.back_yard_live_view",
+              "show_entity_picture": true
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.side_drive_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "camera_image": "camera.side_drive_live_view",
+              "show_entity_picture": true
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.front_drive_garage_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "camera_image": "camera.front_drive_garage_live_view",
+              "show_entity_picture": true
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Navimow i206 AWD"
+            },
+            {
+              "type": "tile",
+              "entity": "lawn_mower.navimow_i206_awd"
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.navimow_i206_awd_battery"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "icon": "",
+              "heading": "Quick Action Panel",
+              "heading_style": "title"
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.living_room_television_qn65ls03dafxza",
+              "name": {
+                "type": "entity"
+              },
+              "grid_options": {
+                "columns": 6,
+                "rows": "auto"
+              }
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.bedroom_television",
+              "name": {
+                "type": "entity"
+              },
+              "grid_options": {
+                "columns": 6,
+                "rows": "auto"
+              }
+            },
+            {
+              "type": "media-control",
+              "entity": "media_player.bedroom_speaker",
+              "grid_options": {
+                "columns": 6,
+                "rows": "auto"
+              }
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "entity": "select.harmony_hub_activities",
+              "name": [
+                {
+                  "type": "area"
+                },
+                {
+                  "type": "device"
+                }
+              ],
+              "show_state": true,
+              "icon_height": "50px",
+              "grid_options": {
+                "columns": 6,
+                "rows": 2
+              }
+            }
+          ],
+          "column_span": 1
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "SpeedTest"
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.speedtest_download"
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.speedtest_ping"
+            },
+            {
+              "type": "tile",
+              "entity": "sensor.speedtest_upload"
+            }
+          ]
+        }
+      ],
+      "header": {
+        "card": {
+          "type": "markdown",
+          "content": "# Hello {{ user }}\n*Where your treasure is, there will your heart be also. - Deathly Hallows*"
+        },
+        "layout": "responsive",
+        "badges_position": "top",
+        "badges_wrap": "wrap"
+      },
+      "badges": [
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "name": {
+            "type": "device"
+          },
+          "show_entity_picture": false,
+          "entity": "sensor.front_door_battery"
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "sensor.back_yard_battery",
+          "name": {
+            "type": "device"
+          },
+          "show_entity_picture": false
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "sensor.side_drive_battery",
+          "name": {
+            "type": "device"
+          },
+          "show_entity_picture": false
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "sensor.front_drive_garage_battery",
+          "name": {
+            "type": "device"
+          },
+          "show_entity_picture": false
+        }
+      ],
+      "type": "sections",
+      "max_columns": 4,
+      "icon": "mdi:home",
+      "background": {
+        "opacity": 33,
+        "alignment": "center",
+        "size": "cover",
+        "repeat": "no-repeat",
+        "attachment": "fixed",
+        "image": {
+          "media_content_id": "media-source://image_upload/ded756541a8cb8942ec7ecf8a03028d9",
+          "media_content_type": "image/jpeg",
+          "metadata": {
+            "title": "canyon-lake-sky.jpg",
+            "thumbnail": "/api/image/serve/ded756541a8cb8942ec7ecf8a03028d9/256x256",
+            "media_class": "image",
+            "navigateIds": [
+              {},
+              {
+                "media_content_type": "app",
+                "media_content_id": "media-source://image_upload"
+              }
+            ]
+          }
+        }
+      },
+      "cards": []
+    },
+    {
+      "type": "sections",
+      "path": "lights",
+      "title": "Lights",
+      "icon": "mdi:lightbulb",
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Living Room",
+              "heading_style": "title",
+              "icon": "mdi:home",
+              "badges": [
+                {
+                  "type": "entity",
+                  "entity": "light.living_room"
+                }
+              ]
+            },
+            {
+              "type": "tile",
+              "entity": "light.living_room",
+              "vertical": false,
+              "features_position": "bottom",
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "type": "heading",
+              "icon": "mdi:lightbulb",
+              "heading": "Lights",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "tile",
+              "entity": "light.ceiling_fan"
+            },
+            {
+              "type": "tile",
+              "entity": "light.ceiling_fan_2"
+            },
+            {
+              "type": "tile",
+              "entity": "light.floor_lamp"
+            },
+            {
+              "type": "heading",
+              "icon": "mdi:beach",
+              "heading": "Scenes",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.living_room_bright"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.living_room_cool_bright"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.living_room_natural_light"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.living_room_nightlight"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.living_room_silent_night"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Bedroom",
+              "heading_style": "title",
+              "icon": "mdi:bed",
+              "badges": [
+                {
+                  "type": "entity",
+                  "show_state": true,
+                  "show_icon": true,
+                  "entity": "light.bedroom",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "state_content": "brightness"
+                }
+              ],
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "light.bedroom",
+              "vertical": false,
+              "features_position": "bottom",
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "type": "heading",
+              "icon": "mdi:lightbulb",
+              "heading": "Lights",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "tile",
+              "entity": "light.bedroom_light_1"
+            },
+            {
+              "type": "tile",
+              "entity": "light.bedroom_light_2"
+            },
+            {
+              "type": "tile",
+              "entity": "light.bedroom_light_3"
+            },
+            {
+              "type": "tile",
+              "entity": "light.bedroom_light_4"
+            },
+            {
+              "type": "tile",
+              "entity": "light.desk_light"
+            },
+            {
+              "type": "tile",
+              "entity": "light.desk_light_2"
+            },
+            {
+              "type": "tile",
+              "entity": "light.travis_lamp"
+            },
+            {
+              "type": "tile",
+              "entity": "light.stars_lamp"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "The Office",
+              "heading_style": "title",
+              "icon": "mdi:office-building",
+              "badges": [
+                {
+                  "type": "entity",
+                  "entity": "light.office"
+                }
+              ]
+            },
+            {
+              "type": "tile",
+              "entity": "light.office",
+              "vertical": false,
+              "features_position": "bottom",
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "type": "heading",
+              "icon": "mdi:lightbulb",
+              "heading": "Lights",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "tile",
+              "entity": "light.bookshelf_light"
+            },
+            {
+              "type": "tile",
+              "entity": "light.cello_loght"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Corina's Room",
+              "heading_style": "title",
+              "icon": "mdi:bed-outline",
+              "badges": [
+                {
+                  "type": "entity",
+                  "entity": "light.corinas_room"
+                }
+              ]
+            },
+            {
+              "type": "tile",
+              "entity": "light.corinas_room",
+              "vertical": false,
+              "features_position": "bottom",
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "type": "heading",
+              "icon": "mdi:lightbulb",
+              "heading": "Lights",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "tile",
+              "entity": "light.guest_room_fan_2"
+            },
+            {
+              "type": "tile",
+              "entity": "light.guest_room_fan"
+            },
+            {
+              "type": "heading",
+              "icon": "mdi:beach",
+              "heading": "Scenes",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.corinas_room_first_light"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.corinas_room_nightlight"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.corinas_room_natural_light"
+            },
+            {
+              "type": "tile",
+              "entity": "scene.corinas_room_nighttime"
+            }
+          ]
+        }
+      ],
+      "header": {
+        "card": {
+          "type": "markdown",
+          "content": "# Light Control Panel\n*\"Happiness can be found, even in the darkest of times, if one only remembers to turn on the light\". - Albus Dumbledore*"
+        },
+        "layout": "responsive",
+        "badges_position": "top",
+        "badges_wrap": "wrap"
+      },
+      "badges": [],
+      "background": {
+        "opacity": 33,
+        "alignment": "center",
+        "size": "cover",
+        "repeat": "repeat",
+        "attachment": "fixed",
+        "image": {
+          "media_content_id": "media-source://image_upload/ec0ed262f0c46596bd0df2d0094e58dd",
+          "media_content_type": "image/jpeg",
+          "metadata": {
+            "title": "Starkissed.jpg",
+            "thumbnail": "/api/image/serve/ec0ed262f0c46596bd0df2d0094e58dd/256x256",
+            "media_class": "image",
+            "navigateIds": [
+              {},
+              {
+                "media_content_type": "app",
+                "media_content_id": "media-source://image_upload"
+              }
+            ]
+          }
+        }
+      },
+      "cards": []
+    },
+    {
+      "type": "sections",
+      "max_columns": 4,
+      "title": "Security",
+      "path": "security",
+      "icon": "mdi:shield-home",
+      "background": {
+        "opacity": 33,
+        "alignment": "center",
+        "size": "cover",
+        "repeat": "repeat",
+        "attachment": "fixed",
+        "image": {
+          "media_content_id": "media-source://image_upload/447c2385fbfd0e77a81dbc7a0a2b175a",
+          "media_content_type": "image/jpeg",
+          "metadata": {
+            "title": "16_9 Rock Squirrel - Concern.jpg",
+            "thumbnail": "/api/image/serve/447c2385fbfd0e77a81dbc7a0a2b175a/256x256",
+            "media_class": "image",
+            "navigateIds": [
+              {},
+              {
+                "media_content_type": "app",
+                "media_content_id": "media-source://image_upload"
+              }
+            ]
+          }
+        }
+      },
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.front_door_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 8
+              }
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.front_drive_right_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 8
+              },
+              "camera_image": "camera.front_drive_right_live_view"
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.side_drive_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 8
+              },
+              "camera_image": "camera.side_drive_live_view"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.front_drive_garage_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 8
+              },
+              "camera_image": "camera.front_drive_garage_live_view"
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "live",
+              "fit_mode": "contain",
+              "type": "picture-entity",
+              "entity": "camera.back_yard_live_view",
+              "image": {
+                "media_content_id": "https://demo.home-assistant.io/stub_config/bedroom.png"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 8
+              },
+              "camera_image": "camera.back_yard_live_view"
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [],
+          "column_span": 2
+        }
+      ],
+      "header": {
+        "card": {
+          "type": "markdown",
+          "content": "# Security Overiew\n*\u201cI am the sword in the darkness.\nI am the watcher on the walls.\u201d - The Night's Watch*"
+        },
+        "layout": "responsive",
+        "badges_position": "top",
+        "badges_wrap": "wrap"
+      },
+      "badges": [
+        {
+          "type": "entity",
+          "entity": "lawn_mower.navimow_i206_awd",
+          "show_name": true
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "light.front_drive_garage_light",
+          "name": {
+            "type": "device"
+          }
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "light.side_drive_light",
+          "name": {
+            "type": "device"
+          }
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "light.back_yard_light",
+          "name": {
+            "type": "device"
+          }
+        }
+      ]
+    },
+    {
+      "type": "sections",
+      "max_columns": 4,
+      "title": "Hive Mind",
+      "path": "hive-mind",
+      "icon": "mdi:beehive-outline",
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Tilt Black",
+              "heading_style": "subtitle",
+              "badges": []
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "entity": "sensor.hivemind_tilt_black_specific_gravity",
+              "detail": 1,
+              "icon": "mdi:water-opacity",
+              "name": "Gravity",
+              "grid_options": {
+                "columns": 12,
+                "rows": 2
+              }
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "entity": "sensor.hivemind_tilt_black_temperature_f",
+              "detail": 1,
+              "icon": "mdi:temperature-fahrenheit",
+              "hours_to_show": 24,
+              "limits": {
+                "min": 0,
+                "max": 180
+              },
+              "grid_options": {
+                "columns": 12,
+                "rows": 2
+              },
+              "name": "Temperature"
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "sensor.hivemind_tilt_black_specific_gravity",
+                      "state_not": "unavailable"
+                    }
+                  ],
+                  "card": {
+                    "type": "vertical-stack",
+                    "cards": [
+                      {
+                        "type": "entities",
+                        "title": "Estimated ABV",
+                        "entities": [
+                          {
+                            "entity": "input_text.mead_black_name",
+                            "name": "Batch Name"
+                          },
+                          {
+                            "entity": "input_number.mead_black_og",
+                            "name": "Starting Gravity (OG)"
+                          },
+                          {
+                            "entity": "sensor.hivemind_tilt_black_specific_gravity",
+                            "name": "Current Gravity (SG)",
+                            "icon": "mdi:water-opacity"
+                          },
+                          {
+                            "entity": "sensor.black_mead_abv",
+                            "name": "Estimated ABV",
+                            "icon": "mdi:liquor"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "gauge",
+                        "entity": "sensor.black_mead_abv",
+                        "name": "ABV (Black)",
+                        "min": 0,
+                        "max": 20,
+                        "needle": true,
+                        "segments": [
+                          {
+                            "from": 0,
+                            "color": "#444444"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "chart_type": "line",
+              "period": "hour",
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.hivemind_tilt_black_specific_gravity"
+              ],
+              "stat_types": [
+                "mean",
+                "min",
+                "max"
+              ],
+              "days_to_show": 30,
+              "title": "Gravity",
+              "grid_options": {
+                "columns": 12,
+                "rows": "auto"
+              }
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Tilt Pink",
+              "heading_style": "subtitle",
+              "badges": []
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "entity": "sensor.hivemind_tilt_pink_specific_gravity",
+              "detail": 1,
+              "icon": "mdi:water-opacity",
+              "name": "Gravity",
+              "grid_options": {
+                "columns": 12,
+                "rows": 2
+              }
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "entity": "sensor.hivemind_tilt_pink_temperature_f",
+              "detail": 1,
+              "icon": "mdi:temperature-fahrenheit",
+              "hours_to_show": 24,
+              "limits": {
+                "min": 0,
+                "max": 180
+              },
+              "grid_options": {
+                "columns": 12,
+                "rows": 2
+              },
+              "name": "Temperature"
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "sensor.hivemind_tilt_black_specific_gravity",
+                      "state_not": "unavailable"
+                    }
+                  ],
+                  "card": {
+                    "type": "vertical-stack",
+                    "cards": [
+                      {
+                        "type": "entities",
+                        "title": "Estimated ABV",
+                        "entities": [
+                          {
+                            "entity": "input_text.mead_pink_name",
+                            "name": "Batch Name"
+                          },
+                          {
+                            "entity": "input_number.mead_pink_og",
+                            "name": "Starting Gravity (OG)"
+                          },
+                          {
+                            "entity": "sensor.hivemind_tilt_pink_specific_gravity",
+                            "name": "Current Gravity (SG)",
+                            "icon": "mdi:water-opacity"
+                          },
+                          {
+                            "entity": "sensor.pink_mead_abv",
+                            "name": "Estimated ABV",
+                            "icon": "mdi:liquor"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "gauge",
+                        "entity": "sensor.pink_mead_abv",
+                        "name": "ABV (Pink)",
+                        "min": 0,
+                        "max": 20,
+                        "needle": true,
+                        "segments": [
+                          {
+                            "from": 0,
+                            "color": "#f48fb1"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "chart_type": "line",
+              "period": "hour",
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.hivemind_tilt_pink_specific_gravity"
+              ],
+              "stat_types": [
+                "mean",
+                "min",
+                "max"
+              ],
+              "days_to_show": 30,
+              "title": "Gravity",
+              "grid_options": {
+                "columns": 12,
+                "rows": "auto"
+              }
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Tilt Red",
+              "heading_style": "subtitle",
+              "badges": []
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "entity": "sensor.hivemind_tilt_red_specific_gravity",
+              "detail": 1,
+              "icon": "mdi:water-opacity",
+              "name": "Gravity",
+              "grid_options": {
+                "columns": 12,
+                "rows": 2
+              }
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "entity": "sensor.hivemind_tilt_red_temperature_f",
+              "detail": 1,
+              "icon": "mdi:temperature-fahrenheit",
+              "hours_to_show": 24,
+              "limits": {
+                "min": 0,
+                "max": 180
+              },
+              "grid_options": {
+                "columns": 12,
+                "rows": 2
+              },
+              "name": "Temperature"
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "sensor.hivemind_tilt_black_specific_gravity",
+                      "state_not": "unavailable"
+                    }
+                  ],
+                  "card": {
+                    "type": "vertical-stack",
+                    "cards": [
+                      {
+                        "type": "entities",
+                        "title": "Estimated ABV",
+                        "entities": [
+                          {
+                            "entity": "input_text.mead_red_name",
+                            "name": "Batch Name"
+                          },
+                          {
+                            "entity": "input_number.mead_red_og",
+                            "name": "Starting Gravity (OG)"
+                          },
+                          {
+                            "entity": "sensor.hivemind_tilt_red_specific_gravity",
+                            "name": "Current Gravity (SG)",
+                            "icon": "mdi:water-opacity"
+                          },
+                          {
+                            "entity": "sensor.red_mead_abv",
+                            "name": "Estimated ABV",
+                            "icon": "mdi:liquor"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "gauge",
+                        "entity": "sensor.red_mead_abv",
+                        "name": "ABV (Red)",
+                        "min": 0,
+                        "max": 20,
+                        "needle": true,
+                        "segments": [
+                          {
+                            "from": 0,
+                            "color": "#e53935"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "chart_type": "line",
+              "period": "hour",
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.hivemind_tilt_red_specific_gravity"
+              ],
+              "stat_types": [
+                "mean",
+                "min",
+                "max"
+              ],
+              "days_to_show": 30,
+              "title": "Gravity",
+              "grid_options": {
+                "columns": 12,
+                "rows": "auto"
+              }
+            }
+          ],
+          "column_span": 2
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "icon": "mdi:youtube-tv",
+              "heading_style": "subtitle",
+              "heading": "Stream"
+            },
+            {
+              "type": "iframe",
+              "url": "https://player.twitch.tv/?channel=meadworks&parent=home.uselocal.app",
+              "aspect_ratio": "100%",
+              "grid_options": {
+                "columns": "full",
+                "rows": 6
+              }
+            },
+            {
+              "type": "heading",
+              "heading": "Chamber",
+              "heading_style": "subtitle",
+              "badges": []
+            },
+            {
+              "show_name": false,
+              "show_icon": true,
+              "type": "button",
+              "entity": "switch.fermentation_chamber",
+              "show_state": true,
+              "icon_height": "50px",
+              "grid_options": {
+                "columns": 3,
+                "rows": 2
+              },
+              "icon": "mdi:fridge"
+            }
+          ],
+          "column_span": 2
+        }
+      ],
+      "header": {
+        "card": {
+          "type": "markdown",
+          "content": "# Hive Mind\n\u201cI am fond of food and drink, even more so when shared among friends.\u201d - Gandolf"
+        },
+        "layout": "responsive",
+        "badges_position": "top",
+        "badges_wrap": "wrap"
+      },
+      "dense_section_placement": false,
+      "cards": [],
+      "badges": [
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "sensor.hivemind_tilt_black_rssi",
+          "name": "Tilt Black",
+          "show_entity_picture": false,
+          "icon": "mdi:signal"
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "sensor.hivemind_tilt_red_rssi",
+          "show_entity_picture": false,
+          "icon": "mdi:signal",
+          "name": "Tilt Red"
+        },
+        {
+          "type": "entity",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "entity": "sensor.hivemind_tilt_pink_rssi",
+          "show_entity_picture": false,
+          "icon": "mdi:signal",
+          "name": "Tilt Pink"
+        }
+      ]
+    },
+    {
+      "type": "sections",
+      "max_columns": 4,
+      "title": "Habitica",
+      "path": "habitica",
+      "icon": "mdi:checkbox-marked-circle-auto-outline",
+      "visible": [
+        {
+          "user": "72e23aa0b7ab4ca2896e88138c0a0a4f"
+        }
+      ],
+      "sections": [
+        {
+          "type": "grid",
+          "column_span": 12,
+          "cards": [
+            {
+              "type": "entities",
+              "title": "Character",
+              "entities": [
+                {
+                  "entity": "sensor.travis_redden_display_name",
+                  "name": "Adventurer"
+                },
+                {
+                  "entity": "sensor.travis_redden_class"
+                },
+                {
+                  "entity": "sensor.travis_redden_level"
+                },
+                {
+                  "entity": "sensor.travis_redden_experience"
+                },
+                {
+                  "entity": "sensor.travis_redden_next_level"
+                },
+                {
+                  "entity": "sensor.travis_redden_gold"
+                },
+                {
+                  "entity": "sensor.travis_redden_gems"
+                }
+              ]
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.travis_redden_health",
+              "name": "Health",
+              "min": 0,
+              "max": 50
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.travis_redden_mana",
+              "name": "Mana",
+              "min": 0,
+              "max": 100
+            },
+            {
+              "type": "history-graph",
+              "title": "Progress",
+              "hours_to_show": 72,
+              "entities": [
+                {
+                  "entity": "sensor.travis_redden_experience"
+                },
+                {
+                  "entity": "sensor.travis_redden_gold"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "square": true,
+              "type": "grid",
+              "cards": [
+                {
+                  "display_order": "none",
+                  "type": "todo-list",
+                  "title": "Dailies",
+                  "entity": "todo.travis_redden_dailies",
+                  "hide_completed": true
+                },
+                {
+                  "type": "todo-list",
+                  "title": "To-Dos",
+                  "entity": "todo.travis_redden_to_do_s"
+                }
+              ],
+              "grid_options": {
+                "rows": "full",
+                "columns": "full"
+              }
+            }
+          ],
+          "column_span": 3
+        }
+      ],
+      "header": {
+        "layout": "responsive",
+        "badges_position": "bottom",
+        "badges_wrap": "wrap",
+        "card": {
+          "type": "markdown",
+          "content": "# Hello Adventurer,\n\u201cAll we have to decide is what to do with the time that is given us.\u201d - Gandolf",
+          "title": "Hello Adventurer",
+          "text_only": true
+        }
+      }
+    }
+  ]
+}
