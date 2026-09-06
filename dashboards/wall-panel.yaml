@@ -118,6 +118,24 @@ views:
             features:
               - type: light-brightness
 
+          - type: tile
+            entity: light.kitchen
+            name: Kitchen
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.bedroom
+            name: Bedroom
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.desk_light
+            name: Desk
+            features:
+              - type: light-brightness
+
           # The one destructive action on the panel, so it sits last and alone.
           - type: button
             name: All lamps off
@@ -203,14 +221,27 @@ views:
                 state_not: unavailable
 
           - type: heading
+            heading: Outdoor
+            heading_style: subtitle
+            icon: mdi:outdoor-lamp
+
+          - type: tile
+            entity: light.driveway
+            name: Driveway
+
+          - type: tile
+            entity: light.back_yard_light
+            name: Back Yard
+
+          - type: heading
             heading: Playing
             heading_style: subtitle
             icon: mdi:play-circle-outline
 
           - type: tile
             entity: media_player.living_room_television
-            name: Living Room TV
+            name: Living Room
 
           - type: tile
             entity: media_player.bedroom_speaker
-            name: Bedroom Speaker
+            name: Bedroom
