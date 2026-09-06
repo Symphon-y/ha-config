@@ -101,7 +101,7 @@ views:
               action: perform-action
               perform_action: remote.send_command
               target:
-                entity_id: remote.living_room_television_qn65ls03dafxza
+                entity_id: remote.hub_living_room_television
               data:
                 command: KEY_POWER
 
