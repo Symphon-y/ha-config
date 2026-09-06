@@ -1,0 +1,59 @@
+- sensor:
+    - name: "Mead Current ABV"
+      unique_id: mead_current_abv
+      unit_of_measurement: "%"
+      state_class: measurement
+      state: >
+        {% set og = states('input_number.starting_gravity') | float(0) %}
+        {% set sg_entity = states('input_select.mead_active_hydrometer') %}
+        {% set sg = states(sg_entity) | float(0) %}
+
+        {% if og > 0 and sg > 0 and sg <= og %}
+          {{ ((og - sg) * 131.25) | round(2) }}
+        {% else %}
+          unknown
+        {% endif %}
+      availability: >
+        {% set sg_entity = states('input_select.mead_active_hydrometer') %}
+        {{ is_number(states('input_number.starting_gravity'))
+          and sg_entity != 'unknown'
+          and is_number(states(sg_entity)) }}
+
+    - name: "Black Mead ABV"
+      unique_id: mead_black_abv
+      unit_of_measurement: "%"
+      state_class: measurement
+      state: >
+        {% set og = states('input_number.mead_black_og') | float(0) %}
+        {% set sg = states('sensor.hivemind_tilt_black_specific_gravity') | float(0) %}
+        {% if og > 0 and sg > 0 and sg <= og %}
+          {{ ((og - sg) * 131.25) | round(2) }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    - name: "Red Mead ABV"
+      unique_id: mead_red_abv
+      unit_of_measurement: "%"
+      state_class: measurement
+      state: >
+        {% set og = states('input_number.mead_red_og') | float(0) %}
+        {% set sg = states('sensor.hivemind_tilt_red_specific_gravity') | float(0) %}
+        {% if og > 0 and sg > 0 and sg <= og %}
+          {{ ((og - sg) * 131.25) | round(2) }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    - name: "Pink Mead ABV"
+      unique_id: mead_pink_abv
+      unit_of_measurement: "%"
+      state_class: measurement
+      state: >
+        {% set og = states('input_number.mead_pink_og') | float(0) %}
+        {% set sg = states('sensor.hivemind_tilt_pink_specific_gravity') | float(0) %}
+        {% if og > 0 and sg > 0 and sg <= og %}
+          {{ ((og - sg) * 131.25) | round(2) }}
+        {% else %}
+          unknown
+        {% endif %}

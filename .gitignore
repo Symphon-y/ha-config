@@ -1,0 +1,39 @@
+# Secrets and credentials — never commit these.
+# .storage holds auth tokens, user accounts and integration credentials in plaintext JSON.
+.storage/
+secrets.yaml
+.cloud/
+ip_bans.yaml
+known_devices.yaml
+
+# State, history and generated data
+*.db
+*.db-*
+*.log
+*.log.*
+home-assistant.log*
+.HA_VERSION
+.uuid
+
+# Caches and dependencies
+deps/
+tts/
+backups/
+__pycache__/
+*.pyc
+.cache/
+
+# HACS-installed components: reinstallable, and large
+custom_components/hacs/
+
+# ESPHome is its own git repository and carries its own secrets.yaml.
+esphome/
+
+# Runtime state and generated caches
+.ha_run.lock
+.shopping_list.json
+harmony_*.conf
+
+# UI-uploaded images: binary, and referenced from .storage which is not committed,
+# so they would be orphaned here.
+image/

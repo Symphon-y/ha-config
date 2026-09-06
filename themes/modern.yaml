@@ -1,0 +1,245 @@
+# Modern Theme for Home Assistant
+# A sophisticated, dark theme with clean typography and elegant card designs
+# Inspired by luxury smart home interfaces
+
+modern:
+  # ========================================
+  # PRIMARY COLORS
+  # ========================================
+
+  # Main background colors
+  primary-background-color: "#1a1a1a"
+  secondary-background-color: "#2a2a2a"
+
+  # Card colors
+  card-background-color: "rgba(42, 42, 42, 0.85)"
+  ha-card-background: "rgba(42, 42, 42, 0.85)"
+  ha-card-border-radius: "12px"
+  ha-card-box-shadow: "0 4px 16px rgba(0, 0, 0, 0.4)"
+
+  # ========================================
+  # TEXT COLORS
+  # ========================================
+
+  primary-text-color: "#e8e8e8"
+  secondary-text-color: "#a0a0a0"
+  disabled-text-color: "#6a6a6a"
+  text-primary-color: "#ffffff"
+
+  # Label and header colors
+  label-badge-text-color: "#e8e8e8"
+  label-badge-background-color: "rgba(42, 42, 42, 0.9)"
+
+  # ========================================
+  # ACCENT COLORS
+  # ========================================
+
+  primary-color: "#ffffff"
+  accent-color: "#ffffff"
+  light-primary-color: "#f5f5f5"
+  dark-primary-color: "#c0c0c0"
+
+  # ========================================
+  # STATE COLORS
+  # ========================================
+
+  # Success/On states
+  state-icon-color: "#ffffff"
+  state-icon-active-color: "#ffffff"
+  state-on-color: "#ffffff"
+
+  # Inactive/Off states
+  state-off-color: "#6a6a6a"
+  state-unavailable-color: "#4a4a4a"
+
+  # Warning and error states
+  state-alarm-warning-color: "#ff9800"
+  state-alarm-armed-color: "#4caf50"
+  state-alarm-disarmed-color: "#6a6a6a"
+  state-alarm-triggered-color: "#f44336"
+
+  # ========================================
+  # SIDEBAR
+  # ========================================
+
+  sidebar-background-color: "#0d0d0d"
+  sidebar-icon-color: "rgba(255, 255, 255, 0.4)"
+  sidebar-text-color: "rgba(255, 255, 255, 0.5)"
+  sidebar-selected-background-color: "transparent"
+  sidebar-selected-icon-color: "#ffffff"
+  sidebar-selected-text-color: "#ffffff"
+
+  # Sidebar menu styling
+  sidebar-menu-button-background-color: "transparent"
+  sidebar-menu-button-background-color-hover: "rgba(255, 255, 255, 0.03)"
+
+  # Additional sidebar customization
+  sidebar-icon-opacity: "0.4"
+  sidebar-text-opacity: "0.5"
+  sidebar-selected-opacity: "1.0"
+
+  # ========================================
+  # HEADER
+  # ========================================
+
+  app-header-background-color: "#0d0d0d"
+  app-header-text-color: "#e8e8e8"
+
+  # ========================================
+  # SWITCHES & CONTROLS
+  # ========================================
+
+  switch-checked-color: "#ffffff"
+  switch-unchecked-color: "#4a4a4a"
+  switch-checked-button-color: "#1a1a1a"
+  switch-unchecked-button-color: "#2a2a2a"
+
+  slider-color: "#ffffff"
+  slider-secondary-color: "#4a4a4a"
+  slider-track-color: "rgba(255, 255, 255, 0.2)"
+
+  # ========================================
+  # INPUT FIELDS
+  # ========================================
+
+  input-fill-color: "rgba(255, 255, 255, 0.05)"
+  input-disabled-fill-color: "rgba(255, 255, 255, 0.02)"
+  input-ink-color: "#ffffff"
+  input-label-ink-color: "#a0a0a0"
+  input-disabled-ink-color: "#6a6a6a"
+  input-dropdown-icon-color: "#a0a0a0"
+
+  # ========================================
+  # DIVIDERS & BORDERS
+  # ========================================
+
+  divider-color: "rgba(255, 255, 255, 0.08)"
+  ha-card-border-color: "rgba(255, 255, 255, 0.05)"
+
+  # ========================================
+  # SCROLLBARS
+  # ========================================
+
+  scrollbar-thumb-color: "rgba(255, 255, 255, 0.2)"
+
+  # ========================================
+  # DATA TABLES
+  # ========================================
+
+  table-row-background-color: "rgba(42, 42, 42, 0.5)"
+  table-row-alternative-background-color: "rgba(42, 42, 42, 0.3)"
+  data-table-background-color: "transparent"
+
+  # ========================================
+  # MARKDOWN & CODE
+  # ========================================
+
+  markdown-code-background-color: "rgba(0, 0, 0, 0.3)"
+  code-editor-background-color: "#1a1a1a"
+
+  # ========================================
+  # CHIPS & BADGES
+  # ========================================
+
+  chip-background-color: "rgba(255, 255, 255, 0.1)"
+
+  # ========================================
+  # ENTITY STATES
+  # ========================================
+
+  # Climate
+  state-climate-auto-color: "#4caf50"
+  state-climate-cool-color: "#2196f3"
+  state-climate-heat-color: "#ff9800"
+  state-climate-manual-color: "#ffc107"
+  state-climate-off-color: "#6a6a6a"
+  state-climate-fan-only-color: "#03a9f4"
+  state-climate-dry-color: "#ff5722"
+
+  # Cover
+  state-cover-open-color: "#ffffff"
+  state-cover-closed-color: "#6a6a6a"
+
+  # Lock
+  state-lock-locked-color: "#4caf50"
+  state-lock-unlocked-color: "#f44336"
+  state-lock-pending-color: "#ff9800"
+
+  # Vacuum
+  state-vacuum-cleaning-color: "#4caf50"
+  state-vacuum-docked-color: "#6a6a6a"
+  state-vacuum-error-color: "#f44336"
+
+  # ========================================
+  # PAPER ELEMENTS (Material Design)
+  # ========================================
+
+  paper-card-background-color: "rgba(42, 42, 42, 0.85)"
+  paper-dialog-background-color: "#2a2a2a"
+  paper-item-icon-color: "#a0a0a0"
+  paper-item-icon-active-color: "#ffffff"
+  paper-listbox-background-color: "#2a2a2a"
+  paper-grey-50: "#fafafa"
+  paper-grey-200: "#eeeeee"
+
+  # Paper sliders
+  paper-slider-knob-color: "#ffffff"
+  paper-slider-knob-start-color: "#ffffff"
+  paper-slider-pin-color: "#ffffff"
+  paper-slider-active-color: "#ffffff"
+  paper-slider-container-color: "rgba(255, 255, 255, 0.2)"
+  paper-slider-secondary-color: "#4a4a4a"
+  paper-slider-disabled-active-color: "#6a6a6a"
+  paper-slider-disabled-secondary-color: "#4a4a4a"
+
+  # Paper toggle
+  paper-toggle-button-checked-bar-color: "rgba(255, 255, 255, 0.5)"
+  paper-toggle-button-checked-button-color: "#ffffff"
+  paper-toggle-button-checked-ink-color: "#ffffff"
+  paper-toggle-button-unchecked-bar-color: "rgba(255, 255, 255, 0.2)"
+  paper-toggle-button-unchecked-button-color: "#4a4a4a"
+  paper-toggle-button-unchecked-ink-color: "#4a4a4a"
+
+  # ========================================
+  # MATERIAL DESIGN COMPONENTS
+  # ========================================
+
+  material-background-color: "#1a1a1a"
+  material-secondary-background-color: "#2a2a2a"
+  material-body-text-color: "#e8e8e8"
+  material-secondary-text-color: "#a0a0a0"
+  material-disabled-text-color: "#6a6a6a"
+
+  # ========================================
+  # BUTTONS
+  # ========================================
+
+  mdc-theme-primary: "#ffffff"
+  mdc-theme-secondary: "#a0a0a0"
+  mdc-theme-on-primary: "#1a1a1a"
+  mdc-theme-on-secondary: "#1a1a1a"
+
+  # ========================================
+  # CUSTOM PROPERTIES
+  # ========================================
+
+  # Typography
+  ha-card-header-font-size: "18px"
+  ha-card-header-font-weight: "300"
+  primary-font-family: "Roboto, sans-serif"
+
+  # Spacing
+  masonry-view-card-margin: "12px"
+  vertical-stack-card-margin: "12px"
+
+  # Effects
+  state-icon-hover-color: "#ffffff"
+
+  # Energy colors
+  energy-grid-consumption-color: "#4caf50"
+  energy-grid-return-color: "#2196f3"
+  energy-solar-color: "#ff9800"
+  energy-battery-in-color: "#4caf50"
+  energy-battery-out-color: "#f44336"
+  energy-gas-color: "#03a9f4"
+  energy-water-color: "#00bcd4"

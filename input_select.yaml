@@ -1,0 +1,7 @@
+mead_active_hydrometer:
+  name: Active Hydrometer
+  options:
+    - sensor.hivemind_tilt_black_specific_gravity
+    - sensor.hivemind_tilt_red_specific_gravity
+    - sensor.hivemind_tilt_pink_specific_gravity
+  initial: sensor.hivemind_tilt_black_specific_gravity

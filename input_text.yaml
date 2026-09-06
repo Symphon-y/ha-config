@@ -1,0 +1,9 @@
+mead_black_name:
+  name: Black Tilt Batch Name
+  max: 50
+mead_red_name:
+  name: Red Tilt Batch Name
+  max: 50
+mead_pink_name:
+  name: Pink Tilt Batch Name
+  max: 50

@@ -1,0 +1,22 @@
+set_blade_height:
+  name: Set blade height
+  description: Set the mower blade height (currently not supported via REST API; this service will error).
+  fields:
+    device_id:
+      name: Device ID
+      description: Navimow device identifier.
+      required: true
+      example: "1234567890"
+      selector:
+        text:
+    height:
+      name: Blade height
+      description: Blade height in millimeters.
+      required: true
+      example: 30
+      selector:
+        number:
+          min: 10
+          max: 60
+          step: 1
+          mode: slider

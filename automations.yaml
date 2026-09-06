@@ -1,0 +1,86 @@
+- id: '1764552306470'
+  alias: Turn off Common Area Lights at Bedtime
+  description: ''
+  mode: single
+  triggers:
+  - trigger: time
+    at: 01:00:00
+    alias: At 1 am Weekdays
+  conditions:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  actions:
+  - action: light.turn_off
+    alias: Turn off Common Area Lights
+    metadata: {}
+    data:
+      transition: 30
+    target:
+      area_id:
+      - living_room
+      - library
+      - office
+- id: '1764552628828'
+  alias: Turn on Office Lights @ 0800
+  description: ''
+  mode: single
+  triggers:
+  - trigger: time
+    at: 08:00:00
+    alias: Weekdays @ 0800
+    enabled: true
+  conditions:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  actions:
+  - alias: Turn on Office Lights
+    action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      area_id: office
+- id: '1764553000000'
+  alias: Fermentation chamber - auto control 65F
+  description: Turn plug off when below 65°F, on when above 66°F
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.hivemind_tilt_pink_temperature_f
+    below: 63
+  - trigger: numeric_state
+    entity_id:
+    - sensor.hivemind_tilt_pink_temperature_f
+    above: 66
+  - trigger: time_pattern
+    minutes: /5
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.hivemind_tilt_pink_temperature_f
+        above: 66
+      sequence:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.fermentation_chamber
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.hivemind_tilt_pink_temperature_f
+        below: 63
+      sequence:
+      - action: switch.turn_off
+        target:
+          entity_id: switch.fermentation_chamber
+    default: []
+  mode: single
