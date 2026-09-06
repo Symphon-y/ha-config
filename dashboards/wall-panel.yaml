@@ -27,22 +27,24 @@ views:
           # The hero. Read at six feet: how many lamps are burning, how warm it
           # is, whether anyone is in. Counts, not a list — a list would need
           # reading, and this needs glancing.
+          # Time and house state. No strftime padding modifiers (%-I, %-d): those are
+          # glibc extensions and Home Assistant OS runs musl, where they raise.
           - type: markdown
             text: >
-              # {{ now().strftime('%-I:%M') }}
-
-              **{{ now().strftime('%A') }}**, {{ now().strftime('%-d %B') }}
-
-
-              {% set on = states.light
-                   | selectattr('state','eq','on') | list | count %}
+              {% set h = now().hour % 12 %}
+              {% set on = states.light | selectattr('state','eq','on') | list | count %}
               {% set home = [states('person.travis'), states('person.star')]
                    | select('eq','home') | list | count %}
               {% set t = states('sensor.downstairs_temperature') %}
+
+              # {{ h if h else 12 }}:{{ '%02d' % now().minute }}
+
+              **{{ now().strftime('%A') }}** · {{ now().day }} {{ now().strftime('%B') }}
+
               ### {{ on }} {{ 'lamp' if on == 1 else 'lamps' }} lit
-              {% if t not in ['unknown','unavailable','none'] -%}
-              {{ t | float(0) | round(0) }}°F downstairs ·
-              {%- endif %} {{ home }} of 2 home
+
+              {% if t not in ['unknown','unavailable','none'] %}{{ t | float(0) | round(0) }}°F
+              downstairs · {% endif %}{{ home }} of 2 home
 
           - type: heading
             heading: Climate
