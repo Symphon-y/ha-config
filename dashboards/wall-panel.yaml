@@ -93,10 +93,10 @@ views:
               target:
                 entity_id: select.harmony_hub_activities
               data:
-                option: Watch TV
+                option: Watch Tv
 
           - type: button
-            name: PowerOff
+            name: Power off
             icon: mdi:power
             grid_options:
               columns: 6
@@ -106,27 +106,119 @@ views:
               target:
                 entity_id: select.harmony_hub_activities
               data:
-                option: PowerOff
+                option: power_off
+
+          # A nested grid pins the 3x3. Per-card grid_options let these reflow with the
+          # column, so the arrows never formed a cross around OK.
+          - type: grid
+            columns: 3
+            square: true
+            cards:
+              - type: button
+                icon: mdi:keyboard-return
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: Return
+              - type: button
+                icon: mdi:chevron-up
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionUp
+              - type: button
+                icon: mdi:home
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: Home
+              - type: button
+                icon: mdi:chevron-left
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionLeft
+              - type: button
+                icon: mdi:circle-slice-8
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: Select
+              - type: button
+                icon: mdi:chevron-right
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionRight
+              - type: button
+                icon: mdi:volume-minus
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: VolumeDown
+              - type: button
+                icon: mdi:chevron-down
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionDown
+              - type: button
+                icon: mdi:volume-plus
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: VolumeUp
 
           - type: button
-            icon: mdi:image-frame
-            name: Art Mode
-            grid_options:
-              columns: 8
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: ArtMode
-
-          - type: button
+            name: Mute
             icon: mdi:volume-mute
-            show_name: false
             grid_options:
-              columns: 4
+              columns: 12
             tap_action:
               action: call-service
               service: remote.send_command
@@ -135,132 +227,6 @@ views:
               data:
                 device: Samsung TV
                 command: Mute
-
-          - type: button
-            icon: mdi:keyboard-return
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: Return
-
-          - type: button
-            icon: mdi:chevron-up
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: DirectionUp
-
-          - type: button
-            icon: mdi:home
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: Home
-
-          - type: button
-            icon: mdi:chevron-left
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: DirectionLeft
-
-          - type: button
-            icon: mdi:circle-slice-8
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: Select
-
-          - type: button
-            icon: mdi:chevron-right
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: DirectionRight
-
-          - type: button
-            icon: mdi:volume-minus
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: VolumeDown
-
-          - type: button
-            icon: mdi:chevron-down
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: DirectionDown
-
-          - type: button
-            icon: mdi:volume-plus
-            show_name: false
-            grid_options:
-              columns: 4
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              target:
-                entity_id: remote.harmony_hub
-              data:
-                device: Samsung TV
-                command: VolumeUp
 
 
       # --- Column 2: the lamps, by name --------------------------------------
@@ -274,6 +240,10 @@ views:
             heading_style: subtitle
             icon: mdi:lightbulb-group-outline
 
+          - type: heading
+            heading: Living Room
+            heading_style: subtitle
+
           - type: tile
             entity: light.living_room
             name: Living Room
@@ -283,6 +253,16 @@ views:
           - type: tile
             entity: light.fireplace
             name: Fireplace
+            features:
+              - type: light-brightness
+
+          - type: heading
+            heading: Bedroom
+            heading_style: subtitle
+
+          - type: tile
+            entity: light.bedroom
+            name: Bedroom
             features:
               - type: light-brightness
 
@@ -299,41 +279,17 @@ views:
               - type: light-brightness
 
           - type: tile
-            entity: light.bookshelf_light
-            name: Bookshelf
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.kitchen
-            name: Kitchen
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.bedroom
-            name: Bedroom
-            features:
-              - type: light-brightness
-
-          - type: tile
             entity: light.desk_light
             name: Desk
             features:
               - type: light-brightness
 
-          # The one destructive action on the panel, so it sits last and alone.
-          - type: button
-            name: All off
-            icon: mdi:lightbulb-group-off-outline
-            show_state: false
-            grid_options:
-              columns: 6
-            tap_action:
-              action: call-service
-              service: light.turn_off
-              target:
-                entity_id: all
+          - type: tile
+            entity: light.bookshelf_light
+            name: Bookshelf
+            features:
+              - type: light-brightness
+
 
       # --- Column 3: outside, and the mead -----------------------------------
       - type: grid
@@ -392,61 +348,12 @@ views:
                 entity: input_select.wall_panel_camera
                 state: Back Yard
 
-          - type: button
-            name: Front Door
-            icon: mdi:door
-            show_state: false
-            grid_options:
-              columns: 3
-            tap_action:
-              action: call-service
-              service: input_select.select_option
-              target:
-                entity_id: input_select.wall_panel_camera
-              data:
-                option: Front Door
-
-          - type: button
-            name: Garage
-            icon: mdi:garage
-            show_state: false
-            grid_options:
-              columns: 3
-            tap_action:
-              action: call-service
-              service: input_select.select_option
-              target:
-                entity_id: input_select.wall_panel_camera
-              data:
-                option: Garage
-
-          - type: button
-            name: Side Drive
-            icon: mdi:road-variant
-            show_state: false
-            grid_options:
-              columns: 3
-            tap_action:
-              action: call-service
-              service: input_select.select_option
-              target:
-                entity_id: input_select.wall_panel_camera
-              data:
-                option: Side Drive
-
-          - type: button
-            name: Back Yard
-            icon: mdi:tree
-            show_state: false
-            grid_options:
-              columns: 3
-            tap_action:
-              action: call-service
-              service: input_select.select_option
-              target:
-                entity_id: input_select.wall_panel_camera
-              data:
-                option: Back Yard
+          - type: tile
+            entity: input_select.wall_panel_camera
+            name: Camera
+            icon: mdi:cctv
+            features:
+              - type: select-options
 
           - type: tile
             entity: weather.forecast_home
@@ -517,12 +424,3 @@ views:
           - type: tile
             entity: light.back_yard_light
             name: Back Yard
-
-          - type: heading
-            heading: Playing
-            heading_style: subtitle
-            icon: mdi:play-circle-outline
-
-          - type: tile
-            entity: media_player.living_room_television_qn65ls03dafxza
-            name: The Frame
