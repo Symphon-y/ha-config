@@ -108,7 +108,7 @@ views:
 
           - type: tile
             entity: light.stars_lamp
-            name: Stars
+            name: Stars Lamp
             features:
               - type: light-brightness
 
@@ -291,4 +291,3 @@ views:
           - type: tile
             entity: media_player.living_room_television
             name: Living Room
-
