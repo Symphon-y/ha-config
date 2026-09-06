@@ -93,6 +93,7 @@ input_number.mead_pink_og
 input_number.mead_red_og
 input_number.starting_gravity
 input_select.mead_active_hydrometer
+input_select.wall_panel_camera
 input_text.mead_black_name
 input_text.mead_pink_name
 input_text.mead_red_name
