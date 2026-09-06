@@ -142,7 +142,7 @@ views:
             icon: mdi:lightbulb-group-off-outline
             show_state: false
             grid_options:
-              columns: 4
+              columns: 6
             tap_action:
               action: call-service
               service: light.turn_off
@@ -206,12 +206,61 @@ views:
                 entity: input_select.wall_panel_camera
                 state: Back Yard
 
-          - type: tile
-            entity: input_select.wall_panel_camera
-            name: Camera
-            icon: mdi:cctv
-            features:
-              - type: select-options
+          - type: button
+            name: Front Door
+            icon: mdi:door
+            show_state: false
+            grid_options:
+              columns: 3
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              target:
+                entity_id: input_select.wall_panel_camera
+              data:
+                option: Front Door
+
+          - type: button
+            name: Garage
+            icon: mdi:garage
+            show_state: false
+            grid_options:
+              columns: 3
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              target:
+                entity_id: input_select.wall_panel_camera
+              data:
+                option: Garage
+
+          - type: button
+            name: Side Drive
+            icon: mdi:road-variant
+            show_state: false
+            grid_options:
+              columns: 3
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              target:
+                entity_id: input_select.wall_panel_camera
+              data:
+                option: Side Drive
+
+          - type: button
+            name: Back Yard
+            icon: mdi:tree
+            show_state: false
+            grid_options:
+              columns: 3
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              target:
+                entity_id: input_select.wall_panel_camera
+              data:
+                option: Back Yard
 
           - type: tile
             entity: weather.forecast_home
