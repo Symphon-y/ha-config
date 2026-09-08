@@ -95,12 +95,14 @@ views:
           - type: tile
             entity: light.living_room
             name: Living Room
+            icon: mdi:lightbulb-group
             features:
               - type: light-brightness
 
           - type: tile
             entity: light.fireplace
             name: Fireplace
+            icon: mdi:lightbulb
             features:
               - type: light-brightness
 
@@ -408,10 +410,12 @@ views:
           - type: tile
             entity: light.driveway
             name: Driveway
+            icon: mdi:lightbulb-group
 
           - type: tile
             entity: light.back_yard_light
             name: Back Yard
+            icon: mdi:lightbulb
 
   # ---------------------------------------------------------------------------
   # MASTER BEDROOM — its own view, so the kiosk deck reaches it with a two-finger
@@ -436,29 +440,34 @@ views:
           - type: tile
             entity: light.bedroom
             name: Bedroom
+            icon: mdi:lightbulb-group
             features:
               - type: light-brightness
 
           - type: tile
             entity: light.floor_lamp
             name: Floor Lamp
+            icon: mdi:lightbulb
             features:
               - type: light-brightness
 
           - type: tile
             entity: light.stars_lamp
             name: Stars Lamp
+            icon: mdi:lightbulb
             features:
               - type: light-brightness
 
           - type: tile
             entity: light.desk_light
             name: Desk
+            icon: mdi:lightbulb
             features:
               - type: light-brightness
 
           - type: tile
             entity: light.bookshelf_light
             name: Bookshelf
+            icon: mdi:lightbulb
             features:
               - type: light-brightness
