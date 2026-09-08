@@ -413,15 +413,24 @@ views:
             entity: light.back_yard_light
             name: Back Yard
 
-      # --- Master bedroom -----------------------------------------------------
-      # Its own section rather than a sub-heading: the lamps in here are a set you
-      # act on together, and they were the longest run in the lighting column.
+  # ---------------------------------------------------------------------------
+  # MASTER BEDROOM — its own view, so the kiosk deck reaches it with a two-finger
+  # swipe. One view per deck page is the whole reason navigation lives in the app
+  # rather than in Home Assistant's tab bar.
+  # ---------------------------------------------------------------------------
+  - title: Master Bedroom
+    path: master-bedroom
+    theme: Wall Panel
+    type: sections
+    max_columns: 2
+    dense_section_placement: true
+    sections:
       - type: grid
         column_span: 1
         cards:
           - type: heading
             heading: Master Bedroom
-            heading_style: subtitle
+            heading_style: title
             icon: mdi:bed
 
           - type: tile
