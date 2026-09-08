@@ -123,7 +123,7 @@ views:
             name: Art Mode
             icon: mdi:brush
             grid_options:
-              columns: 6
+              columns: 4
             tap_action:
               action: perform-action
               perform_action: remote.send_command
@@ -136,7 +136,7 @@ views:
             name: Wake
             icon: mdi:television-shimmer
             grid_options:
-              columns: 6
+              columns: 4
             tap_action:
               action: call-service
               service: remote.send_command
@@ -150,7 +150,7 @@ views:
             name: Power off
             icon: mdi:power
             grid_options:
-              columns: 6
+              columns: 4
             tap_action:
               action: call-service
               service: select.select_option
