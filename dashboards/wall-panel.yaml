@@ -77,6 +77,33 @@ views:
             entity: person.star
             name: Star
 
+      # --- Column 2: the lamps, by name --------------------------------------
+      # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
+      # rooms; light.tp_link_smart_bulb_694f is not. Amber icon means burning.
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Lighting
+            heading_style: subtitle
+            icon: mdi:lightbulb-group-outline
+
+          - type: heading
+            heading: Living Room
+            heading_style: subtitle
+
+          - type: tile
+            entity: light.living_room
+            name: Living Room
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.fireplace
+            name: Fireplace
+            features:
+              - type: light-brightness
+
           - type: heading
             heading: Television
             heading_style: subtitle
@@ -252,67 +279,6 @@ views:
                 device: Samsung TV
                 command: Mute
 
-      # --- Column 2: the lamps, by name --------------------------------------
-      # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
-      # rooms; light.tp_link_smart_bulb_694f is not. Amber icon means burning.
-      - type: grid
-        column_span: 1
-        cards:
-          - type: heading
-            heading: Lighting
-            heading_style: subtitle
-            icon: mdi:lightbulb-group-outline
-
-          - type: heading
-            heading: Living Room
-            heading_style: subtitle
-
-          - type: tile
-            entity: light.living_room
-            name: Living Room
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.fireplace
-            name: Fireplace
-            features:
-              - type: light-brightness
-
-          - type: heading
-            heading: Bedroom
-            heading_style: subtitle
-
-          - type: tile
-            entity: light.bedroom
-            name: Bedroom
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.floor_lamp
-            name: Floor Lamp
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.stars_lamp
-            name: Stars Lamp
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.desk_light
-            name: Desk
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.bookshelf_light
-            name: Bookshelf
-            features:
-              - type: light-brightness
-
       # --- Column 3: outside, and the mead -----------------------------------
       - type: grid
         column_span: 1
@@ -446,3 +412,44 @@ views:
           - type: tile
             entity: light.back_yard_light
             name: Back Yard
+
+      # --- Master bedroom -----------------------------------------------------
+      # Its own section rather than a sub-heading: the lamps in here are a set you
+      # act on together, and they were the longest run in the lighting column.
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Master Bedroom
+            heading_style: subtitle
+            icon: mdi:bed
+
+          - type: tile
+            entity: light.bedroom
+            name: Bedroom
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.floor_lamp
+            name: Floor Lamp
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.stars_lamp
+            name: Stars Lamp
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.desk_light
+            name: Desk
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.bookshelf_light
+            name: Bookshelf
+            features:
+              - type: light-brightness
