@@ -444,30 +444,52 @@ views:
             features:
               - type: light-brightness
 
+          - type: heading
+            heading: Ceiling Fan
+            heading_style: subtitle
+
           - type: tile
-            entity: light.floor_lamp
-            name: Floor Lamp
+            entity: light.fan_1
+            name: Fan 1
             icon: mdi:lightbulb
             features:
               - type: light-brightness
+
+          - type: tile
+            entity: light.fan_2
+            name: Fan 2
+            icon: mdi:lightbulb
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.fan_3
+            name: Fan 3
+            icon: mdi:lightbulb
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.fan_4
+            name: Fan 4
+            icon: mdi:lightbulb
+            features:
+              - type: light-brightness
+
+          - type: heading
+            heading: Lamps
+            heading_style: subtitle
 
           - type: tile
             entity: light.stars_lamp
-            name: Stars Lamp
+            name: "Star’s Lamp"
             icon: mdi:lightbulb
             features:
               - type: light-brightness
 
           - type: tile
-            entity: light.desk_light
-            name: Desk
-            icon: mdi:lightbulb
-            features:
-              - type: light-brightness
-
-          - type: tile
-            entity: light.bookshelf_light
-            name: Bookshelf
+            entity: light.travis_lamp
+            name: "Travis’s Lamp"
             icon: mdi:lightbulb
             features:
               - type: light-brightness
