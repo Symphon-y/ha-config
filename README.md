@@ -26,6 +26,9 @@ can be reviewed, diffed and rolled back.
 | `themes/modern.yaml` | The previous theme, untouched |
 | `automations.yaml`, `scripts.yaml`, `scenes.yaml`, `templates.yaml` | Managed in the UI, stored here |
 | `entity-inventory.txt` | Every entity id, regenerated for design work |
+| `tools/` | Maintenance scripts. Not loaded by Home Assistant |
+| `entity-renames.json` | Proposed entity id renames, awaiting review |
+| `entity-renames.applied.json` | Renames that were actually applied — the revert log |
 
 ## The wall panel
 
@@ -62,3 +65,37 @@ cd /config && python3 -c "import json;d=json.load(open('.storage/core.entity_reg
 
 Only entity ids are extracted — the full registry carries device serials and MAC
 addresses in `unique_id`, which do not belong in a repository.
+
+## Renaming entities
+
+Home Assistant derives an entity id from the device name at first discovery and never
+revises it when the device is renamed upstream. So ids drift away from what they
+control: `light.kitchen` is the Bathroom, and `light.floor_lamp` is a ceiling fan bulb.
+
+`tools/ha_entity_rename.py` realigns ids with the current friendly names. Run it from
+the **Studio Code Server add-on terminal**, where `SUPERVISOR_TOKEN` is already set —
+renaming is only possible over the WebSocket API, so it needs a live connection.
+
+```sh
+cd /config
+python3 tools/ha_entity_rename.py plan          # read-only; writes entity-renames.json
+# review that file, set "apply": false on anything unwanted
+python3 tools/ha_entity_rename.py apply --yes   # performs the renames
+python3 tools/ha_entity_rename.py refs --write  # updates references in tracked YAML
+```
+
+`plan` defaults to Hue (`--platform all` widens it) and refuses to guess: anything whose
+target id is already taken is written out with `"apply": false` and a collision note.
+`apply` is idempotent, so a partial run is safe to repeat, and it writes
+`entity-renames.applied.json` — `apply --revert` undoes the batch.
+
+Both JSON files are committed on purpose. The rename set is then reviewable and
+revertable in git, for the same reason the wall panel is YAML.
+
+**Watch the apostrophe rule.** Home Assistant slugs with `python-slugify`, which deletes
+apostrophes rather than replacing them: "Travis's Lamp" slugs to `traviss_lamp`. `plan`
+will propose that; set `"apply": false` and keep `light.travis_lamp`.
+
+Renames break dashboard references and Home Assistant does not rewrite them. `refs`
+finds them. It never writes `.storage/` (the UI dashboards) or `current-dashboard.json`
+(an export of them) — fix those in the browser editor.
