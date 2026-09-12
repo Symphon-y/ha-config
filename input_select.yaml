@@ -12,8 +12,9 @@ wall_panel_camera:
   name: Wall Panel Camera
   options:
     - Front Door
+    - Pool Room
     - Garage
-    - Side Drive
-    - Back Yard
+    - Tash Run
+    - Pump Run
   initial: Front Door
   icon: mdi:cctv
