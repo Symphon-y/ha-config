@@ -84,8 +84,14 @@ python3 tools/ha_entity_rename.py apply --yes   # performs the renames
 python3 tools/ha_entity_rename.py refs --write  # updates references in tracked YAML
 ```
 
-`plan` defaults to Hue (`--platform all` widens it) and refuses to guess: anything whose
-target id is already taken is written out with `"apply": false` and a collision note.
+`plan` defaults to Hue; `--platform all` widens it, which is what picks up the outdoor
+TP-Link lights.
+
+Two devices can legitimately share a friendly name — there are two Hue lights called
+"Desk Light". Home Assistant disambiguates those by appending `_2`, `_3` and so on, and
+so does this: `light.desk_light_2` is already the correct id for the second one, so it
+is left alone, and a genuinely new clash gets the next free suffix rather than an error.
+Rename one of them in the Hue app if you want ids that actually tell them apart.
 
 Entities disabled in the registry are included and marked `d` — Hue's
 `zigbee_connectivity` diagnostics are disabled by default, so they never reach the state
@@ -97,9 +103,21 @@ from a state. `--skip-disabled` leaves them alone.
 Both JSON files are committed on purpose. The rename set is then reviewable and
 revertable in git, for the same reason the wall panel is YAML.
 
-**Watch the apostrophe rule.** Home Assistant slugs with `python-slugify`, which deletes
-apostrophes rather than replacing them: "Travis's Lamp" slugs to `traviss_lamp`. `plan`
-will propose that; set `"apply": false` and keep `light.travis_lamp`.
+**Manual overrides live at the top of the script**, in two tables, so exceptions are
+recorded in one place instead of being re-decided every run:
+
+- `NAME_FIXUPS` corrects a friendly name before it is slugged. Home Assistant slugs with
+  `python-slugify`, which deletes apostrophes, so "Travis's Lamp" would become
+  `traviss_lamp`; the fixup maps it to "Travis Lamp" and both the light and its
+  companion diagnostics then land on `travis_lamp`.
+- `SKIP` never renames an entity at all. The Hue entertainment zones are in there
+  because they are parented to the bridge, so their composed name is "Hue Bridge
+  Bedroom" and the id would get worse rather than better.
+
+Renames are ordered, so a chain works: if A must vacate an id before B can claim it,
+that happens in the right order automatically, and a true cycle is broken by parking one
+entity on a temporary id. Identity is tracked by `unique_id`, not by entity id, which is
+what makes re-running safe after a chain has already been applied.
 
 Renames break dashboard references and Home Assistant does not rewrite them. `refs`
 finds them. It never writes `.storage/` (the UI dashboards) or `current-dashboard.json`

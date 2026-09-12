@@ -57,6 +57,29 @@ REF_GLOBS = ("*.yaml", "*.json", "dashboards/*.yaml", "themes/*.yaml")
 # Fix those in the browser editor instead.
 REF_READONLY = ("current-dashboard.json",)
 
+# --- Manual overrides -------------------------------------------------------
+# The computed slug is right almost always. These are the handful where it is not,
+# corrected here rather than by renaming devices in the Hue app.
+
+# Applied to the resolved friendly name before slugging, as plain substring
+# replacements, so a fix reaches both the light and its companion diagnostics:
+# "Travis's Lamp" and "Travis's Lamp Zigbee connectivity" are both caught by one entry.
+NAME_FIXUPS: dict[str, str] = {
+    # python-slugify deletes apostrophes, so this would otherwise slug to
+    # traviss_lamp -- worse than the light.travis_lamp we already have.
+    "Travis’s Lamp": "Travis Lamp",
+}
+
+# Never renamed, whatever the slug comes out as.
+SKIP: dict[str, str] = {
+    # Hue entertainment zones are parented to the bridge, so the composed name is
+    # "Hue Bridge Bedroom" and the id would get worse, not better.
+    "binary_sensor.bedroom": "entertainment zone; bridge-parented name is worse",
+    "binary_sensor.library": "entertainment zone; bridge-parented name is worse",
+    "binary_sensor.living_room": "entertainment zone; bridge-parented name is worse",
+    "binary_sensor.ilightshow_ios": "entertainment zone; bridge-parented name is worse",
+}
+
 
 class HaError(RuntimeError):
     """A command came back with success: false."""
@@ -275,6 +298,13 @@ def display_name(entry: dict, states: dict, devices: dict) -> str | None:
     return own
 
 
+def fixup(name: str) -> str:
+    """Apply the manual name corrections before slugging."""
+    for old, new in NAME_FIXUPS.items():
+        name = name.replace(old, new)
+    return name
+
+
 def connect(args: argparse.Namespace) -> HaClient:
     token = args.token or os.environ.get("SUPERVISOR_TOKEN") or os.environ.get(
         "HA_TOKEN"
@@ -332,6 +362,9 @@ def cmd_plan(args: argparse.Namespace) -> int:
         if domains and domain not in domains:
             continue
 
+        if entity_id in SKIP:
+            continue
+
         disabled = bool(entry.get("disabled_by"))
         if disabled and args.skip_disabled:
             continue
@@ -339,8 +372,14 @@ def cmd_plan(args: argparse.Namespace) -> int:
         name = display_name(entry, states, devices)
         if not name:
             continue
-        proposed = f"{domain}.{slugify(name)}"
-        if proposed == entity_id:
+        proposed = f"{domain}.{slugify(fixup(name))}"
+        # Two devices can legitimately share a friendly name -- there are two Hue
+        # lights called "Desk Light". Home Assistant disambiguates by appending _2,
+        # _3, and so on, so light.desk_light_2 is already the right id for the second
+        # one. Treat a numeric suffix on the correct stem as correct, not mismatched.
+        if proposed == entity_id or re.fullmatch(
+            re.escape(proposed) + r"_\d+", entity_id
+        ):
             continue
 
         proposals.append(
@@ -349,6 +388,10 @@ def cmd_plan(args: argparse.Namespace) -> int:
                 "friendly_name": name,
                 "proposed_entity_id": proposed,
                 "apply": True,
+                # Identity for the idempotence check. entity_id cannot serve: in a
+                # rename chain an old id reappears owned by a different entity.
+                "platform": entry.get("platform"),
+                "unique_id": entry.get("unique_id"),
                 # Disabled entities never reach the state machine, so they are also
                 # invisible to VS Code autocomplete. Renaming them is hygiene, not a fix.
                 "disabled": disabled,
@@ -359,21 +402,26 @@ def cmd_plan(args: argparse.Namespace) -> int:
     # Collisions: against every id in the registry, and against each other. Never
     # resolved automatically -- a wrong guess here silently points a dashboard at
     # someone else's light.
-    counts: dict[str, int] = {}
-    for p in proposals:
-        counts[p["proposed_entity_id"]] = counts.get(p["proposed_entity_id"], 0) + 1
+    # An id whose current holder is itself moving away in this same plan is not a
+    # collision, it is a chain -- apply just has to order the two correctly.
+    vacating = {p["entity_id"] for p in proposals}
+    reserved = set(taken) - vacating
 
-    blocked = 0
+    # Two devices really can share a friendly name. Home Assistant resolves that by
+    # appending _2, _3 ... and so do we, rather than refusing: the result is the same
+    # id HA would have picked itself.
+    suffixed = 0
     for p in proposals:
-        target = p["proposed_entity_id"]
-        if target in taken:
-            p["apply"] = False
-            p["note"] = f"COLLISION: {target} already exists"
-            blocked += 1
-        elif counts[target] > 1:
-            p["apply"] = False
-            p["note"] = f"COLLISION: {counts[target]} entities want {target}"
-            blocked += 1
+        base = p["proposed_entity_id"]
+        target, n = base, 1
+        while target in reserved:
+            n += 1
+            target = f"{base}_{n}"
+        if target != base:
+            p["proposed_entity_id"] = target
+            p["note"] = f"'{base}' is taken; using Home Assistant's _{n} suffix"
+            suffixed += 1
+        reserved.add(target)
 
     PLAN_FILE.write_text(
         json.dumps(
@@ -393,7 +441,9 @@ def cmd_plan(args: argparse.Namespace) -> int:
     ready = sum(1 for p in proposals if p["apply"])
     disabled_n = sum(1 for p in proposals if p["disabled"])
     print(f"{len(entries)} entities in the registry")
-    print(f"{len(proposals)} mismatched, {ready} ready to apply, {blocked} blocked")
+    print(f"{len(proposals)} mismatched, {ready} ready to apply")
+    if suffixed:
+        print(f"{suffixed} needed a _N suffix for a shared friendly name")
     if disabled_n:
         print(f"{disabled_n} of them are disabled (marked 'd'; --skip-disabled omits)")
     print()
@@ -402,8 +452,11 @@ def cmd_plan(args: argparse.Namespace) -> int:
         print(f" {flag} {p['entity_id']:44} -> {p['proposed_entity_id']:44} {p['note']}")
     print(f"\nWrote {PLAN_FILE.relative_to(ROOT)}")
     print('Review it, set "apply": false on anything unwanted, then run: apply --yes')
-    if blocked:
-        print(f"{blocked} blocked on collisions -- resolve by hand or leave disabled.")
+    if suffixed:
+        print(
+            "Rows noting a _N suffix share a friendly name with another device; "
+            "rename one at the source if you want distinct ids."
+        )
     return 0
 
 
@@ -426,6 +479,8 @@ def cmd_apply(args: argparse.Namespace) -> int:
                 "entity_id": r["proposed_entity_id"],
                 "proposed_entity_id": r["entity_id"],
                 "friendly_name": r.get("friendly_name", ""),
+                "platform": r.get("platform"),
+                "unique_id": r.get("unique_id"),
             }
             for r in renames
             if r.get("applied")
@@ -458,29 +513,53 @@ def cmd_apply(args: argparse.Namespace) -> int:
 
     client = connect(args)
     try:
-        live = {e["entity_id"] for e in client.command("config/entity_registry/list")}
+        registry = client.command("config/entity_registry/list")
+        live = {e["entity_id"] for e in registry}
+        # Where each entity lives *now*, keyed by identity rather than by id.
+        by_uid = {
+            (e.get("platform"), e.get("unique_id")): e["entity_id"]
+            for e in registry
+            if e.get("unique_id")
+        }
 
-        done, skipped, failed = [], [], []
+        # Idempotent: a partial run can be re-run without erroring.
+        todo, skipped = [], []
         for r in pending:
-            old, new = r["entity_id"], r["proposed_entity_id"]
-            # Idempotent: a partial run can be re-run without erroring.
-            if old not in live and new in live:
+            key = (r.get("platform"), r.get("unique_id"))
+            current = by_uid.get(key) if r.get("unique_id") else None
+            if current is None:
+                # No identity recorded (an older plan file): fall back to the id.
+                current = r["entity_id"]
+                if current not in live and r["proposed_entity_id"] in live:
+                    skipped.append(r)
+                    print(f"  skip   {current} (already {r['proposed_entity_id']})")
+                    continue
+            elif current == r["proposed_entity_id"]:
                 skipped.append(r)
-                print(f"  skip   {old} (already {new})")
+                print(f"  skip   {r['entity_id']} (already {current})")
                 continue
+            # Rename from wherever it actually is now, not from the recorded id.
+            r["entity_id"] = current
+            todo.append(r)
+
+        done, failed = [], []
+        for src, dst, entry in sequence_renames(todo, live):
             try:
                 client.command(
                     "config/entity_registry/update",
-                    entity_id=old,
-                    new_entity_id=new,
+                    entity_id=src,
+                    new_entity_id=dst,
                 )
             except HaError as exc:
-                failed.append((r, str(exc)))
-                print(f"  FAIL   {old} -> {new}: {exc}", file=sys.stderr)
+                failed.append((entry or {"entity_id": src}, str(exc)))
+                print(f"  FAIL   {src} -> {dst}: {exc}", file=sys.stderr)
                 continue
-            r["applied"] = True
-            done.append(r)
-            print(f"  ok     {old} -> {new}")
+            if entry is None:
+                print(f"  park   {src} -> {dst} (breaking a rename cycle)")
+                continue
+            entry["applied"] = True
+            done.append(entry)
+            print(f"  ok     {src} -> {dst}")
     finally:
         client.close()
 
@@ -506,6 +585,58 @@ def cmd_apply(args: argparse.Namespace) -> int:
         if not args.revert:
             print("Now run `refs` to find references that need updating.")
     return 1 if failed else 0
+
+
+def sequence_renames(
+    pending: list[dict], live_ids: set[str]
+) -> list[tuple[str, str, dict | None]]:
+    """Order renames so that chains work: free an id before something claims it.
+
+    Returns (from_id, to_id, entry) steps. A step with entry None is a parking move,
+    used only to break a cycle (A wants B's id while B wants A's) by moving one of
+    them to a temporary id first.
+    """
+    occupied = set(live_ids)
+    current = {id(r): r["entity_id"] for r in pending}
+    steps: list[tuple[str, str, dict | None]] = []
+    remaining = list(pending)
+
+    while remaining:
+        progressed = False
+        blocked = []
+        for r in remaining:
+            src, dst = current[id(r)], r["proposed_entity_id"]
+            if dst in occupied and dst != src:
+                blocked.append(r)
+                continue
+            steps.append((src, dst, r))
+            occupied.discard(src)
+            occupied.add(dst)
+            current[id(r)] = dst
+            progressed = True
+        remaining = blocked
+        if not progressed and remaining:
+            # Parking only helps when the blocker is inside this batch, i.e. a real
+            # cycle. If the id is held by something we are not moving, no amount of
+            # reordering frees it -- emit the step and let the API reject it with the
+            # authoritative reason rather than looping forever.
+            held_here = {current[id(r)] for r in remaining}
+            cyclic = [r for r in remaining if r["proposed_entity_id"] in held_here]
+            if not cyclic:
+                steps.extend(
+                    (current[id(r)], r["proposed_entity_id"], r) for r in remaining
+                )
+                break
+            r = cyclic[0]
+            src = current[id(r)]
+            domain, _, rest = src.partition(".")
+            temp = f"{domain}.{rest}_rename_tmp"
+            steps.append((src, temp, None))
+            occupied.discard(src)
+            occupied.add(temp)
+            current[id(r)] = temp
+
+    return steps
 
 
 def regenerate_inventory() -> None:
