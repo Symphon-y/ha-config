@@ -93,10 +93,19 @@ so does this: `light.desk_light_2` is already the correct id for the second one,
 is left alone, and a genuinely new clash gets the next free suffix rather than an error.
 Rename one of them in the Hue app if you want ids that actually tell them apart.
 
-Entities disabled in the registry are included and marked `d` — Hue's
-`zigbee_connectivity` diagnostics are disabled by default, so they never reach the state
-machine and their names have to be composed from the device registry rather than read
-from a state. `--skip-disabled` leaves them alone.
+**Disabled entities are skipped by default, and should usually stay that way.** A
+disabled entity never reaches the state machine, so there is no `friendly_name` to read
+and the registry holds at best half of one. The companion app's
+`sensor.home_tablet_battery_health` looks like plain "Battery Health" from the registry,
+so renaming on that basis would strip the device prefix and claim `sensor.battery_health`
+— which is both wrong and would collide the moment a second device appears.
+`--include-disabled` overrides it and marks those rows `d`, meaning "this name is a
+guess".
+
+Proposals whose friendly name repeats itself are set to `"apply": false` and marked
+`REVIEW`. Some integrations compose a name that already contains the device name, giving
+`media_player.hub_living_room_television_living_room_television`. That really is the name
+Home Assistant reports, so the rename is not wrong, but it is not worth making.
 `apply` is idempotent, so a partial run is safe to repeat, and it writes
 `entity-renames.applied.json` — `apply --revert` undoes the batch.
 

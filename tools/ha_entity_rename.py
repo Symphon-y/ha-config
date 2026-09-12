@@ -305,6 +305,24 @@ def fixup(name: str) -> str:
     return name
 
 
+def looks_doubled(slug: str, run: int = 3) -> bool:
+    """Does this slug repeat a run of words?
+
+    Some integrations compose a friendly name that already contains the device name,
+    giving things like "Hub Living Room Television Living Room Television". The name
+    is genuinely what Home Assistant reports, so the rename is not wrong exactly, but
+    it is not worth making either -- worth flagging for a human.
+    """
+    parts = slug.split("_")
+    seen: set[tuple[str, ...]] = set()
+    for i in range(len(parts) - run + 1):
+        window = tuple(parts[i : i + run])
+        if window in seen:
+            return True
+        seen.add(window)
+    return False
+
+
 def connect(args: argparse.Namespace) -> HaClient:
     token = args.token or os.environ.get("SUPERVISOR_TOKEN") or os.environ.get(
         "HA_TOKEN"
@@ -365,8 +383,14 @@ def cmd_plan(args: argparse.Namespace) -> int:
         if entity_id in SKIP:
             continue
 
+        # A disabled entity never reaches the state machine, so there is no
+        # friendly_name to read and the registry holds at best half of one: the
+        # companion app's sensor.home_tablet_battery_health looks like plain
+        # "Battery Health" from here, and renaming on that basis would strip the
+        # device prefix and claim sensor.battery_health. If Home Assistant is not
+        # showing a name, do not invent one. --include-disabled overrides.
         disabled = bool(entry.get("disabled_by"))
-        if disabled and args.skip_disabled:
+        if disabled and not args.include_disabled:
             continue
 
         name = display_name(entry, states, devices)
@@ -423,6 +447,16 @@ def cmd_plan(args: argparse.Namespace) -> int:
             suffixed += 1
         reserved.add(target)
 
+    # Flag proposals that look like the integration composed a name badly, rather
+    # than silently marching them into the registry.
+    doubled = 0
+    for p in proposals:
+        if looks_doubled(p["proposed_entity_id"].split(".", 1)[1]):
+            p["apply"] = False
+            note = "REVIEW: friendly name repeats itself; left off by default"
+            p["note"] = f"{p['note']}; {note}" if p["note"] else note
+            doubled += 1
+
     PLAN_FILE.write_text(
         json.dumps(
             {
@@ -444,8 +478,13 @@ def cmd_plan(args: argparse.Namespace) -> int:
     print(f"{len(proposals)} mismatched, {ready} ready to apply")
     if suffixed:
         print(f"{suffixed} needed a _N suffix for a shared friendly name")
+    if doubled:
+        print(f"{doubled} left off: the friendly name repeats itself (marked '!')")
     if disabled_n:
-        print(f"{disabled_n} of them are disabled (marked 'd'; --skip-disabled omits)")
+        print(
+            f"{disabled_n} are disabled, so their name is a guess (marked 'd') "
+            "-- these only appear because of --include-disabled"
+        )
     print()
     for p in proposals:
         flag = "!" if not p["apply"] else ("d" if p["disabled"] else " ")
@@ -753,9 +792,9 @@ def main() -> int:
         help="entity domain to include, repeatable (default: all)",
     )
     p.add_argument(
-        "--skip-disabled",
+        "--include-disabled",
         action="store_true",
-        help="omit registry-disabled entities (Hue diagnostics are disabled by default)",
+        help="also propose disabled entities, whose display name has to be guessed",
     )
     p.set_defaults(func=cmd_plan)
 
