@@ -426,9 +426,21 @@ def cmd_plan(args: argparse.Namespace) -> int:
     # Collisions: against every id in the registry, and against each other. Never
     # resolved automatically -- a wrong guess here silently points a dashboard at
     # someone else's light.
+    # Flag proposals that look like the integration composed a name badly, rather
+    # than silently marching them into the registry. This has to run *before* the
+    # suffix pass below: an entity switched off here is no longer vacating its id,
+    # and anything else eyeing that id must be told so.
+    doubled = 0
+    for p in proposals:
+        if looks_doubled(p["proposed_entity_id"].split(".", 1)[1]):
+            p["apply"] = False
+            p["note"] = "REVIEW: friendly name repeats itself; left off by default"
+            doubled += 1
+
     # An id whose current holder is itself moving away in this same plan is not a
-    # collision, it is a chain -- apply just has to order the two correctly.
-    vacating = {p["entity_id"] for p in proposals}
+    # collision, it is a chain -- apply just has to order the two correctly. Only
+    # rows that will actually run count as vacating.
+    vacating = {p["entity_id"] for p in proposals if p["apply"]}
     reserved = set(taken) - vacating
 
     # Two devices really can share a friendly name. Home Assistant resolves that by
@@ -436,6 +448,8 @@ def cmd_plan(args: argparse.Namespace) -> int:
     # id HA would have picked itself.
     suffixed = 0
     for p in proposals:
+        if not p["apply"]:
+            continue
         base = p["proposed_entity_id"]
         target, n = base, 1
         while target in reserved:
@@ -443,19 +457,10 @@ def cmd_plan(args: argparse.Namespace) -> int:
             target = f"{base}_{n}"
         if target != base:
             p["proposed_entity_id"] = target
-            p["note"] = f"'{base}' is taken; using Home Assistant's _{n} suffix"
+            note = f"'{base}' is taken; using Home Assistant's _{n} suffix"
+            p["note"] = f"{p['note']}; {note}" if p["note"] else note
             suffixed += 1
         reserved.add(target)
-
-    # Flag proposals that look like the integration composed a name badly, rather
-    # than silently marching them into the registry.
-    doubled = 0
-    for p in proposals:
-        if looks_doubled(p["proposed_entity_id"].split(".", 1)[1]):
-            p["apply"] = False
-            note = "REVIEW: friendly name repeats itself; left off by default"
-            p["note"] = f"{p['note']}; {note}" if p["note"] else note
-            doubled += 1
 
     PLAN_FILE.write_text(
         json.dumps(
