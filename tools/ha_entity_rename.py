@@ -746,16 +746,30 @@ def cmd_refs(args: argparse.Namespace) -> int:
 
     # .storage holds the UI dashboards. Report only: it is gitignored, and rewriting
     # live storage JSON underneath a running Home Assistant is not worth the risk.
+    # Say out loud what was searched -- "no hits" and "never looked" must not be
+    # indistinguishable, which they were when read errors were swallowed here.
     storage = ROOT / ".storage"
     storage_hits = 0
-    if storage.is_dir():
-        for file in sorted(storage.glob("lovelace*")):
+    storage_files: list[Path] = []
+    storage_note = ""
+    if not storage.is_dir():
+        storage_note = f"{storage} does not exist -- not running on the HA box?"
+    else:
+        storage_files = sorted(
+            f for f in storage.glob("lovelace*") if f.is_file()
+        )
+        if not storage_files:
+            storage_note = (
+                f"{storage} exists but holds no lovelace* files -- "
+                "UI dashboards may be stored under a name this does not match."
+            )
+        for file in storage_files:
             try:
                 text = file.read_text(encoding="utf-8")
-            except (UnicodeDecodeError, OSError):
+            except (UnicodeDecodeError, OSError) as exc:
+                print(f"  [.storage] {file.name}: could not read ({exc})")
                 continue
-            found = set(pattern.findall(text))
-            for old in sorted(found):
+            for old in sorted(set(pattern.findall(text))):
                 storage_hits += 1
                 print(f"  [.storage] {file.name}  {old} -> {mapping[old]}")
 
@@ -764,11 +778,13 @@ def cmd_refs(args: argparse.Namespace) -> int:
         print(f"Rewrote {changed_files} file(s). Review with: git diff")
     elif total:
         print("Re-run with --write to rewrite them.")
+    if storage_note:
+        print(f".storage: {storage_note}")
+    else:
+        names = ", ".join(f.name for f in storage_files)
+        print(f".storage: {storage_hits} reference(s) across {len(storage_files)} file(s) ({names})")
     if storage_hits:
-        print(
-            f"{storage_hits} reference(s) in .storage -- fix these in the browser "
-            "dashboard editor, they are not rewritten here."
-        )
+        print("Fix those in the browser dashboard editor; they are not rewritten here.")
     return 0
 
 
