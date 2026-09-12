@@ -86,6 +86,11 @@ python3 tools/ha_entity_rename.py refs --write  # updates references in tracked 
 
 `plan` defaults to Hue (`--platform all` widens it) and refuses to guess: anything whose
 target id is already taken is written out with `"apply": false` and a collision note.
+
+Entities disabled in the registry are included and marked `d` — Hue's
+`zigbee_connectivity` diagnostics are disabled by default, so they never reach the state
+machine and their names have to be composed from the device registry rather than read
+from a state. `--skip-disabled` leaves them alone.
 `apply` is idempotent, so a partial run is safe to repeat, and it writes
 `entity-renames.applied.json` — `apply --revert` undoes the batch.
 

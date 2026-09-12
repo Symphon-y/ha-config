@@ -251,18 +251,28 @@ def slugify(text: str | None) -> str:
     return slug or "unknown"
 
 
-def display_name(entry: dict, states: dict) -> str | None:
+def display_name(entry: dict, states: dict, devices: dict) -> str | None:
     """What the user actually sees, which is what the id should match.
 
-    The state's friendly_name wins: for entities using has_entity_name it is the
-    composed "Device Name Entity Name", whereas the registry only holds the parts.
+    The state's friendly_name wins where there is one. But entities disabled in the
+    registry never reach the state machine at all -- Hue's zigbee_connectivity
+    diagnostics are disabled by default -- and for those the registry holds only the
+    entity half of the name. Composing "<device> <entity>" the way Home Assistant does
+    is what keeps 18 different connectivity sensors from all slugging to the same id.
     """
     state = states.get(entry["entity_id"])
     if state:
         friendly = (state.get("attributes") or {}).get("friendly_name")
         if friendly:
             return friendly
-    return entry.get("name") or entry.get("original_name")
+
+    own = entry.get("name") or entry.get("original_name")
+    if entry.get("has_entity_name") and entry.get("device_id"):
+        device = devices.get(entry["device_id"]) or {}
+        device_name = device.get("name_by_user") or device.get("name")
+        if device_name:
+            return f"{device_name} {own}".strip() if own else device_name
+    return own
 
 
 def connect(args: argparse.Namespace) -> HaClient:
@@ -291,10 +301,11 @@ def connect(args: argparse.Namespace) -> HaClient:
         sys.exit(f"Could not reach {url}: {exc}")
 
 
-def fetch(client: HaClient) -> tuple[list[dict], dict]:
+def fetch(client: HaClient) -> tuple[list[dict], dict, dict]:
     entries = client.command("config/entity_registry/list")
     states = {s["entity_id"]: s for s in client.command("get_states")}
-    return list(entries), states
+    devices = {d["id"]: d for d in client.command("config/device_registry/list")}
+    return list(entries), states, devices
 
 
 # ---------------------------------------------------------------------------
@@ -303,7 +314,7 @@ def fetch(client: HaClient) -> tuple[list[dict], dict]:
 def cmd_plan(args: argparse.Namespace) -> int:
     client = connect(args)
     try:
-        entries, states = fetch(client)
+        entries, states, devices = fetch(client)
     finally:
         client.close()
 
@@ -321,7 +332,11 @@ def cmd_plan(args: argparse.Namespace) -> int:
         if domains and domain not in domains:
             continue
 
-        name = display_name(entry, states)
+        disabled = bool(entry.get("disabled_by"))
+        if disabled and args.skip_disabled:
+            continue
+
+        name = display_name(entry, states, devices)
         if not name:
             continue
         proposed = f"{domain}.{slugify(name)}"
@@ -334,6 +349,9 @@ def cmd_plan(args: argparse.Namespace) -> int:
                 "friendly_name": name,
                 "proposed_entity_id": proposed,
                 "apply": True,
+                # Disabled entities never reach the state machine, so they are also
+                # invisible to VS Code autocomplete. Renaming them is hygiene, not a fix.
+                "disabled": disabled,
                 "note": "",
             }
         )
@@ -373,11 +391,15 @@ def cmd_plan(args: argparse.Namespace) -> int:
     )
 
     ready = sum(1 for p in proposals if p["apply"])
+    disabled_n = sum(1 for p in proposals if p["disabled"])
     print(f"{len(entries)} entities in the registry")
-    print(f"{len(proposals)} mismatched, {ready} ready to apply, {blocked} blocked\n")
+    print(f"{len(proposals)} mismatched, {ready} ready to apply, {blocked} blocked")
+    if disabled_n:
+        print(f"{disabled_n} of them are disabled (marked 'd'; --skip-disabled omits)")
+    print()
     for p in proposals:
-        flag = " " if p["apply"] else "!"
-        print(f" {flag} {p['entity_id']:42} -> {p['proposed_entity_id']:42} {p['note']}")
+        flag = "!" if not p["apply"] else ("d" if p["disabled"] else " ")
+        print(f" {flag} {p['entity_id']:44} -> {p['proposed_entity_id']:44} {p['note']}")
     print(f"\nWrote {PLAN_FILE.relative_to(ROOT)}")
     print('Review it, set "apply": false on anything unwanted, then run: apply --yes')
     if blocked:
@@ -598,6 +620,11 @@ def main() -> int:
         action="append",
         default=None,
         help="entity domain to include, repeatable (default: all)",
+    )
+    p.add_argument(
+        "--skip-disabled",
+        action="store_true",
+        help="omit registry-disabled entities (Hue diagnostics are disabled by default)",
     )
     p.set_defaults(func=cmd_plan)
 
