@@ -312,7 +312,31 @@ views:
             visibility:
               - condition: state
                 entity: input_select.wall_panel_camera
+                state: Pool Room
+
+          - type: picture-entity
+            entity: camera.garage_drive
+            camera_image: camera.garage_drive
+            camera_view: live
+            fit_mode: contain
+            show_name: false
+            show_state: false
+            visibility:
+              - condition: state
+                entity: input_select.wall_panel_camera
                 state: Garage
+
+          - type: picture-entity
+            entity: camera.trash_run_live_view
+            camera_image: camera.trash_run_live_view
+            camera_view: live
+            fit_mode: contain
+            show_name: false
+            show_state: false
+            visibility:
+              - condition: state
+                entity: input_select.wall_panel_camera
+                state: Tash Run
 
           - type: picture-entity
             entity: camera.side_drive_live_view
@@ -324,19 +348,7 @@ views:
             visibility:
               - condition: state
                 entity: input_select.wall_panel_camera
-                state: Side Drive
-
-          - type: picture-entity
-            entity: camera.back_yard_live_view
-            camera_image: camera.back_yard_live_view
-            camera_view: live
-            fit_mode: contain
-            show_name: false
-            show_state: false
-            visibility:
-              - condition: state
-                entity: input_select.wall_panel_camera
-                state: Back Yard
+                state: Pump Run
 
           - type: tile
             entity: input_select.wall_panel_camera
@@ -416,6 +428,222 @@ views:
             entity: light.back_yard_light
             name: Back Yard
             icon: mdi:lightbulb
+
+  # ---------------------------------------------------------------------------
+  # MASTER BEDROOM — its own view, so the kiosk deck reaches it with a two-finger
+  # swipe. One view per deck page is the whole reason navigation lives in the app
+  # rather than in Home Assistant's tab bar.
+  # ---------------------------------------------------------------------------
+  - title: Living Room
+    path: living-room
+    theme: Wall Panel
+    type: sections
+    max_columns: 2
+    dense_section_placement: true
+    sections:
+      # --- Column 1: the lamps, by name --------------------------------------
+      # Named objects, not devices. "Travis lamp" and "Stars lamp" are things in
+      # rooms; light.tp_link_smart_bulb_694f is not. Amber icon means burning.
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Lighting
+            heading_style: subtitle
+            icon: mdi:lightbulb-group-outline
+
+          - type: heading
+            heading: Living Room
+            heading_style: subtitle
+
+          - type: tile
+            entity: light.living_room
+            name: Living Room
+            icon: mdi:lightbulb-group
+            features:
+              - type: light-brightness
+
+          - type: tile
+            entity: light.fireplace
+            name: Fireplace
+            icon: mdi:lightbulb
+            features:
+              - type: light-brightness
+
+          - type: heading
+            heading: Television
+            heading_style: subtitle
+            icon: mdi:television-classic
+
+          # Art Mode via the SmartThings remote (SAMSUNG_VD_TV_HUB).
+          #
+          # Three transports reach this TV and each means something different by "power":
+          # Harmony IR (no art-mode code exists — the IR button is the power toggle, which
+          # is why it looked identical to Power off), the local Samsung WebSocket, and
+          # SmartThings' cloud API. This is the SmartThings one.
+          #
+          # Worth knowing: no entity across all 722 currently exposes art mode directly,
+          # so if this does not work the remaining option is a custom integration such as
+          # TheFab21/ha-samsungtv-smart, which provides a real switch with state.
+          - type: button
+            name: Art Mode
+            icon: mdi:brush
+            grid_options:
+              columns: 4
+            tap_action:
+              action: perform-action
+              perform_action: remote.send_command
+              target:
+                entity_id: remote.hub_living_room_television
+              data:
+                command: KEY_POWER
+
+          - type: button
+            name: Wake
+            icon: mdi:television-shimmer
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: PowerOn
+
+          - type: button
+            name: Power off
+            icon: mdi:power
+            grid_options:
+              columns: 4
+            tap_action:
+              action: call-service
+              service: select.select_option
+              target:
+                entity_id: select.harmony_hub_activities
+              data:
+                option: power_off
+
+          # A nested grid pins the 3x3. Per-card grid_options let these reflow with the
+          # column, so the arrows never formed a cross around OK.
+          - type: grid
+            columns: 3
+            square: true
+            cards:
+              - type: button
+                icon: mdi:keyboard-return
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: Return
+              - type: button
+                icon: mdi:chevron-up
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionUp
+              - type: button
+                icon: mdi:home
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: Home
+              - type: button
+                icon: mdi:chevron-left
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionLeft
+              - type: button
+                icon: mdi:circle-slice-8
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: Select
+              - type: button
+                icon: mdi:chevron-right
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionRight
+              - type: button
+                icon: mdi:volume-minus
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: VolumeDown
+              - type: button
+                icon: mdi:chevron-down
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: DirectionDown
+              - type: button
+                icon: mdi:volume-plus
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  target:
+                    entity_id: remote.harmony_hub
+                  data:
+                    device: Samsung TV
+                    command: VolumeUp
+
+          - type: button
+            name: Mute
+            icon: mdi:volume-mute
+            grid_options:
+              columns: 12
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              target:
+                entity_id: remote.harmony_hub
+              data:
+                device: Samsung TV
+                command: Mute
 
   # ---------------------------------------------------------------------------
   # MASTER BEDROOM — its own view, so the kiosk deck reaches it with a two-finger

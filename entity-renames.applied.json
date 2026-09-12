@@ -1,0 +1,225 @@
+{
+  "applied": "2026-09-12T00:26:52+00:00",
+  "renames": [
+    {
+      "entity_id": "light.bedroom_fan_2",
+      "friendly_name": "Fan 2",
+      "proposed_entity_id": "light.fan_2",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "28816296-41d0-46c5-b3c9-6a7543a5fa0d",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.bookshelf_light",
+      "friendly_name": "Fan 1",
+      "proposed_entity_id": "light.fan_1",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "efa71457-dbc0-4d49-a0be-229e12df4b40",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.cloffice",
+      "friendly_name": "Office",
+      "proposed_entity_id": "light.office",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "7a453d98-e261-49ef-9fb5-df6d0fc983d0",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.floor_lamp",
+      "friendly_name": "Fan 3",
+      "proposed_entity_id": "light.fan_3",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "e2db6265-1289-445a-95e7-6d56da513ee1",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.hue_color_downlight_1",
+      "friendly_name": "Shower Light",
+      "proposed_entity_id": "light.shower_light",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "79aa3417-0f9d-40c0-aeec-92670b90b2db",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.hue_lightstrip_plus_1",
+      "friendly_name": "Light strip",
+      "proposed_entity_id": "light.light_strip",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "01e8c448-ff5e-4a67-a1a1-a31d3515578d",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.hue_white_lamp_1",
+      "friendly_name": "Driveway left",
+      "proposed_entity_id": "light.driveway_left",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "8ed20336-e949-4a4c-b8c2-99cfe48447ea",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.hue_white_lamp_2",
+      "friendly_name": "Driveway right",
+      "proposed_entity_id": "light.driveway_right",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "c8dde917-cd60-4251-a3e1-ed19d44c9a17",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "light.kitchen",
+      "friendly_name": "Bathroom",
+      "proposed_entity_id": "light.bathroom",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "f8a346c1-f44f-4564-8870-c2461fd70910",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.bedroom_baby_s_breath",
+      "friendly_name": "Bedroom Baby's breath",
+      "proposed_entity_id": "scene.bedroom_babys_breath",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "016d2301-fc01-428c-956d-a3bb68c38982",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.bedroom_nature_s_colors",
+      "friendly_name": "Bedroom Nature's colors",
+      "proposed_entity_id": "scene.bedroom_natures_colors",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "ac8b838a-843e-462f-bbb0-40e723505d92",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.cloffice_bright",
+      "friendly_name": "Office Bright",
+      "proposed_entity_id": "scene.office_bright",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "da24d8bd-9cac-4642-b8a0-60fa954d6fc7",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.cloffice_cool_bright",
+      "friendly_name": "Office Cool bright",
+      "proposed_entity_id": "scene.office_cool_bright",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "d9201834-6521-47cd-b845-7b26b7b48e02",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.cloffice_malibu_pink",
+      "friendly_name": "Office Malibu pink",
+      "proposed_entity_id": "scene.office_malibu_pink",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "abefdef7-ac9e-4ad4-81d1-cbcef88bae22",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.cloffice_read",
+      "friendly_name": "Office Read",
+      "proposed_entity_id": "scene.office_read",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "f4e39f3b-2dbe-4f20-a399-fca63015320d",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.cloffice_relax",
+      "friendly_name": "Office Relax",
+      "proposed_entity_id": "scene.office_relax",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "68598fd7-7475-44b2-b02e-94b70f995ee3",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.cloffice_tokyo",
+      "friendly_name": "Office Tokyo",
+      "proposed_entity_id": "scene.office_tokyo",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "1b8ce5ca-b3dc-451e-aa3d-9baf015295d9",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.kitchen_tokyo",
+      "friendly_name": "Bathroom Tokyo",
+      "proposed_entity_id": "scene.bathroom_tokyo",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "b339a745-dd4c-46d5-807e-3b7c36f6ac14",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.living_room_baby_s_breath",
+      "friendly_name": "Living room Baby's breath",
+      "proposed_entity_id": "scene.living_room_babys_breath",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "f1065aec-bde7-4000-b9a9-7d1599144798",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    },
+    {
+      "entity_id": "scene.living_room_nature_s_colors_2",
+      "friendly_name": "Living room Nature's colors 2",
+      "proposed_entity_id": "scene.living_room_natures_colors_2",
+      "apply": true,
+      "platform": "hue",
+      "unique_id": "371175fa-b0e9-4c8f-965c-569959c528da",
+      "disabled": false,
+      "note": "",
+      "applied": true
+    }
+  ]
+}

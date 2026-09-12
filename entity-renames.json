@@ -1,0 +1,929 @@
+{
+  "generated": "2026-09-12T00:27:56+00:00",
+  "platform": [
+    "all"
+  ],
+  "domain": "all",
+  "renames": [
+    {
+      "entity_id": "binary_sensor.closet_light_cloud_connection",
+      "friendly_name": "Patio Light Cloud connection",
+      "proposed_entity_id": "binary_sensor.patio_light_cloud_connection",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:c7:bf:da:d9:15_cloud_connection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "binary_sensor.cora_s_room_cloud_connection",
+      "friendly_name": "Cora's room Cloud connection",
+      "proposed_entity_id": "binary_sensor.coras_room_cloud_connection",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "D8:44:89:9E:04:A7_cloud_connection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "binary_sensor.grow_lights_cloud_connection",
+      "friendly_name": "Plant Stand Cloud connection",
+      "proposed_entity_id": "binary_sensor.plant_stand_cloud_connection",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:C7:BF:C9:DC:61_cloud_connection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "camera.back_yard_live_view",
+      "friendly_name": "Trash Run Live view",
+      "proposed_entity_id": "camera.trash_run_live_view",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065-live_view",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "camera.front_drive_garage_live_view",
+      "friendly_name": "Pool Room",
+      "proposed_entity_id": "camera.pool_room",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360-live_view",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "camera.front_drive_right_live_view",
+      "friendly_name": "Garage Drive",
+      "proposed_entity_id": "camera.garage_drive",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490-live_view",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "camera.side_drive_live_view",
+      "friendly_name": "Pump Run Live view",
+      "proposed_entity_id": "camera.pump_run_live_view",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070-live_view",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "event.back_yard_motion",
+      "friendly_name": "Trash Run Motion",
+      "proposed_entity_id": "event.trash_run_motion",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065-motion",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "event.front_drive_garage_motion",
+      "friendly_name": "Front Drive Motion",
+      "proposed_entity_id": "event.front_drive_motion",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360-motion",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "event.front_drive_right_motion",
+      "friendly_name": "Back Porch Motion",
+      "proposed_entity_id": "event.back_porch_motion",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490-motion",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "event.side_drive_motion",
+      "friendly_name": "Pump Run Motion",
+      "proposed_entity_id": "event.pump_run_motion",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070-motion",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_number.mead_black_og",
+      "friendly_name": "Black Tilt Starting Gravity",
+      "proposed_entity_id": "input_number.black_tilt_starting_gravity",
+      "apply": true,
+      "platform": "input_number",
+      "unique_id": "mead_black_og",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_number.mead_pink_og",
+      "friendly_name": "Pink Tilt Starting Gravity",
+      "proposed_entity_id": "input_number.pink_tilt_starting_gravity",
+      "apply": true,
+      "platform": "input_number",
+      "unique_id": "mead_pink_og",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_number.mead_red_og",
+      "friendly_name": "Red Tilt Starting Gravity",
+      "proposed_entity_id": "input_number.red_tilt_starting_gravity",
+      "apply": true,
+      "platform": "input_number",
+      "unique_id": "mead_red_og",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_select.mead_active_hydrometer",
+      "friendly_name": "Active Hydrometer",
+      "proposed_entity_id": "input_select.active_hydrometer",
+      "apply": true,
+      "platform": "input_select",
+      "unique_id": "mead_active_hydrometer",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_text.mead_black_name",
+      "friendly_name": "Black Tilt Batch Name",
+      "proposed_entity_id": "input_text.black_tilt_batch_name",
+      "apply": true,
+      "platform": "input_text",
+      "unique_id": "mead_black_name",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_text.mead_pink_name",
+      "friendly_name": "Pink Tilt Batch Name",
+      "proposed_entity_id": "input_text.pink_tilt_batch_name",
+      "apply": true,
+      "platform": "input_text",
+      "unique_id": "mead_pink_name",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "input_text.mead_red_name",
+      "friendly_name": "Red Tilt Batch Name",
+      "proposed_entity_id": "input_text.red_tilt_batch_name",
+      "apply": true,
+      "platform": "input_text",
+      "unique_id": "mead_red_name",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "light.back_yard_light",
+      "friendly_name": "Trash Run Light",
+      "proposed_entity_id": "light.trash_run_light",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "light.closet_light",
+      "friendly_name": "Patio Light",
+      "proposed_entity_id": "light.patio_light",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50C7BFDAD915",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "light.front_drive_garage_light",
+      "friendly_name": "Front Drive Light",
+      "proposed_entity_id": "light.front_drive_light",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "light.front_drive_right_light",
+      "friendly_name": "Back Porch Light",
+      "proposed_entity_id": "light.back_porch_light",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "light.side_drive_light",
+      "friendly_name": "Pump Run Light",
+      "proposed_entity_id": "light.pump_run_light",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "media_player.bedroom_speaker",
+      "friendly_name": "Corina's Bedroom Speaker",
+      "proposed_entity_id": "media_player.corinas_bedroom_speaker",
+      "apply": true,
+      "platform": "cast",
+      "unique_id": "b1a47d16-6e71-6a68-36eb-6488cd663f62",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "media_player.living_room_television_2",
+      "friendly_name": "Hub - Living room television Living room television",
+      "proposed_entity_id": "media_player.hub_living_room_television_living_room_television",
+      "apply": false,
+      "platform": "dlna_dmr",
+      "unique_id": "uuid:0d9d8f52-4604-482e-94ab-28d02225ac19",
+      "disabled": false,
+      "note": "REVIEW: friendly name repeats itself; left off by default"
+    },
+    {
+      "entity_id": "media_player.ls03d6698",
+      "friendly_name": "Living room television",
+      "proposed_entity_id": "media_player.living_room_television_2",
+      "apply": true,
+      "platform": "cast",
+      "unique_id": "34c14d45-9555-56e7-3321-87508d29c927",
+      "disabled": false,
+      "note": "'media_player.living_room_television' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "media_player.ls03f_pm4108",
+      "friendly_name": "Bedroom Television",
+      "proposed_entity_id": "media_player.bedroom_television_2",
+      "apply": true,
+      "platform": "cast",
+      "unique_id": "7cc450ad-e8ae-8060-566d-6c38cb0051a3",
+      "disabled": false,
+      "note": "'media_player.bedroom_television' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "media_player.m70f4288",
+      "friendly_name": "32\" Smart Monitor M7",
+      "proposed_entity_id": "media_player.32_smart_monitor_m7",
+      "apply": true,
+      "platform": "cast",
+      "unique_id": "5d215eb1-635c-0ff0-7d7d-8a167da50537",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "media_player.plex_celestial_one_plex_for_ios_ipad_2",
+      "friendly_name": "Plex (Plex for iOS - iPad)",
+      "proposed_entity_id": "media_player.plex_plex_for_ios_ipad_2",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:22B0F5E5-5F23-4797-9AB0-7CB28E685B6B",
+      "disabled": false,
+      "note": "'media_player.plex_plex_for_ios_ipad' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "media_player.plex_cora_plex_web_chrome_windows",
+      "friendly_name": "Plex Client Service Plex (Cora - Plex Web - Chrome - Windows)",
+      "proposed_entity_id": "media_player.plex_client_service_plex_cora_plex_web_chrome_windows",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:23zzzzekwbphag079ega6z7d",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "media_player.plex_cora_plex_web_chrome_windows_2",
+      "friendly_name": "Plex Client Service Plex (Cora - Plex Web - Chrome - Windows)",
+      "proposed_entity_id": "media_player.plex_client_service_plex_cora_plex_web_chrome_windows_2",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:x8dg07xy56d4vjgkdyrdych0",
+      "disabled": false,
+      "note": "'media_player.plex_client_service_plex_cora_plex_web_chrome_windows' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "media_player.plex_cora_plex_web_chrome_windows_3",
+      "friendly_name": "Plex Client Service Plex (Cora - Plex Web - Chrome - Windows)",
+      "proposed_entity_id": "media_player.plex_client_service_plex_cora_plex_web_chrome_windows_3",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:pthh10pplmpecu6xkgq9w9kl",
+      "disabled": false,
+      "note": "'media_player.plex_client_service_plex_cora_plex_web_chrome_windows' is taken; using Home Assistant's _3 suffix"
+    },
+    {
+      "entity_id": "media_player.plex_plex_for_roku_jimmy_s_tv",
+      "friendly_name": "Plex (Plex for Roku - Jimmy's Tv) Plex (Mom And Dad - Plex for Roku - Jimmy's Tv)",
+      "proposed_entity_id": "media_player.plex_plex_for_roku_jimmys_tv_plex_mom_and_dad_plex_for_roku_jimmys_tv",
+      "apply": false,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:1f6394305fcff0f7a32b60e69d5c5928",
+      "disabled": false,
+      "note": "REVIEW: friendly name repeats itself; left off by default"
+    },
+    {
+      "entity_id": "media_player.plex_plex_for_samsung_tv_2025",
+      "friendly_name": "Plex (Celestial One - Plex for Samsung - TV 2025)",
+      "proposed_entity_id": "media_player.plex_celestial_one_plex_for_samsung_tv_2025_4",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:93exloyyrjbx0lr8kof6fqi3",
+      "disabled": false,
+      "note": "'media_player.plex_celestial_one_plex_for_samsung_tv_2025' is taken; using Home Assistant's _4 suffix"
+    },
+    {
+      "entity_id": "media_player.plex_plex_for_samsung_tv_2025_3",
+      "friendly_name": "Plex (Plex for Samsung - TV 2025) Plex (Cora - Plex for Samsung - TV 2025)",
+      "proposed_entity_id": "media_player.plex_plex_for_samsung_tv_2025_plex_cora_plex_for_samsung_tv_2025",
+      "apply": false,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:nh8dxy1sj78k9fcxof141sps",
+      "disabled": false,
+      "note": "REVIEW: friendly name repeats itself; left off by default"
+    },
+    {
+      "entity_id": "media_player.plex_plex_for_samsung_tv_2025_4",
+      "friendly_name": "Plex (Cora - Plex for Samsung - TV 2025)",
+      "proposed_entity_id": "media_player.plex_cora_plex_for_samsung_tv_2025",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:gdg4wndxvkrl3rmv7o5avp6m",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "media_player.plex_plex_for_samsung_tv_2025_5",
+      "friendly_name": "Plex (Celestial One - Plex for Samsung - TV 2025)",
+      "proposed_entity_id": "media_player.plex_celestial_one_plex_for_samsung_tv_2025_5",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:x8kb2g89uyntt3uxyr8kzoz8",
+      "disabled": false,
+      "note": "'media_player.plex_celestial_one_plex_for_samsung_tv_2025' is taken; using Home Assistant's _5 suffix"
+    },
+    {
+      "entity_id": "media_player.plex_plex_web_chrome_osx",
+      "friendly_name": "Plex Client Service Plex (Plex Web - Chrome - OSX)",
+      "proposed_entity_id": "media_player.plex_client_service_plex_plex_web_chrome_osx",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:8b8gr7a2c4efnyb5kxywmmkb",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "media_player.plex_plex_web_chrome_osx_2",
+      "friendly_name": "Plex Client Service Plex (Plex Web - Chrome - OSX)",
+      "proposed_entity_id": "media_player.plex_client_service_plex_plex_web_chrome_osx_2",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:tgbu8i0ul5xxscx2j9f89frd",
+      "disabled": false,
+      "note": "'media_player.plex_client_service_plex_plex_web_chrome_osx' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "media_player.plex_plex_web_chrome_windows",
+      "friendly_name": "Plex Client Service Plex (Plex Web - Chrome - Windows)",
+      "proposed_entity_id": "media_player.plex_client_service_plex_plex_web_chrome_windows_2",
+      "apply": true,
+      "platform": "plex",
+      "unique_id": "d7e17885a0ab8b43b3c40b266e4fd5ff91b36542:pxy36sjjuqyk53lhh41evhqc",
+      "disabled": false,
+      "note": "'media_player.plex_client_service_plex_plex_web_chrome_windows' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "number.back_yard_volume",
+      "friendly_name": "Trash Run Volume",
+      "proposed_entity_id": "number.trash_run_volume",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065-volume",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "number.front_drive_garage_volume",
+      "friendly_name": "Front Drive Volume",
+      "proposed_entity_id": "number.front_drive_volume",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360-volume",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "number.front_drive_right_volume",
+      "friendly_name": "Back Porch Volume",
+      "proposed_entity_id": "number.back_porch_volume",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490-volume",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "number.side_drive_volume",
+      "friendly_name": "Pump Run Volume",
+      "proposed_entity_id": "number.pump_run_volume",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070-volume",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "select.closet_light_light_preset",
+      "friendly_name": "Patio Light Light preset",
+      "proposed_entity_id": "select.patio_light_light_preset",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:c7:bf:da:d9:15_light_preset",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.back_yard_battery",
+      "friendly_name": "Trash Run Battery",
+      "proposed_entity_id": "sensor.trash_run_battery",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065-battery",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.back_yard_last_activity",
+      "friendly_name": "Trash Run Last activity",
+      "proposed_entity_id": "sensor.trash_run_last_activity",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065-last_activity",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.closet_light_current_consumption",
+      "friendly_name": "Patio Light Current consumption",
+      "proposed_entity_id": "sensor.patio_light_current_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:c7:bf:da:d9:15_current_power_w",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.closet_light_this_month_s_consumption",
+      "friendly_name": "Patio Light This month's consumption",
+      "proposed_entity_id": "sensor.patio_light_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:c7:bf:da:d9:15_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.closet_light_this_month_s_consumption_cost",
+      "friendly_name": "sensor Cost",
+      "proposed_entity_id": "sensor.sensor_cost",
+      "apply": true,
+      "platform": "energy",
+      "unique_id": "dde3c341b16d60d0c30670c8cbeeee5a_grid_cost",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.closet_light_today_s_consumption",
+      "friendly_name": "Patio Light Today's consumption",
+      "proposed_entity_id": "sensor.patio_light_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:c7:bf:da:d9:15_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.downstairs_downstairs_fan_timer_timeout",
+      "friendly_name": "Downstairs Fan timer timeout",
+      "proposed_entity_id": "sensor.downstairs_fan_timer_timeout",
+      "apply": true,
+      "platform": "nest",
+      "unique_id": "enterprises/ad508e16-9847-4ce0-9e92-2ce64636bf77/devices/AVPHwEv41FYwcjo_cvgcB6D9s_97T1PwG-NAHEel24SuEGTISdSSkwp6t1aeZXlCfSw0QjE4Pa0QqxRKecWmMNLBymSxmA-fan-timer",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.front_drive_garage_battery",
+      "friendly_name": "Front Drive Battery",
+      "proposed_entity_id": "sensor.front_drive_battery",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360-battery",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.front_drive_garage_last_activity",
+      "friendly_name": "Front Drive Last activity",
+      "proposed_entity_id": "sensor.front_drive_last_activity",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360-last_activity",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.front_drive_right_battery",
+      "friendly_name": "Back Porch Battery",
+      "proposed_entity_id": "sensor.back_porch_battery",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490-battery",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.front_drive_right_last_activity",
+      "friendly_name": "Back Porch Last activity",
+      "proposed_entity_id": "sensor.back_porch_last_activity",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490-last_activity",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.garage_drink_fridge_energy",
+      "friendly_name": "Drink Fridge Energy",
+      "proposed_entity_id": "sensor.drink_fridge_energy",
+      "apply": true,
+      "platform": "smartthings",
+      "unique_id": "3fec6b8d-6399-4124-b1d8-4dc3330a6a51_main_energyMeter_energy_energy",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.garage_drink_fridge_power",
+      "friendly_name": "Drink Fridge Power",
+      "proposed_entity_id": "sensor.drink_fridge_power",
+      "apply": true,
+      "platform": "smartthings",
+      "unique_id": "3fec6b8d-6399-4124-b1d8-4dc3330a6a51_main_powerMeter_power_power",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.hp_deskjet_2700_series",
+      "friendly_name": "Printer (ink)",
+      "proposed_entity_id": "sensor.printer_ink",
+      "apply": true,
+      "platform": "ipp",
+      "unique_id": "d5a968fa-edc3-75dd-bc6f-1a5ca48df4ad_printer",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.hp_deskjet_2700_series_black_ink",
+      "friendly_name": "Printer (ink) black ink",
+      "proposed_entity_id": "sensor.printer_ink_black_ink",
+      "apply": true,
+      "platform": "ipp",
+      "unique_id": "d5a968fa-edc3-75dd-bc6f-1a5ca48df4ad_marker_0",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.hp_deskjet_2700_series_tri_color_ink",
+      "friendly_name": "Printer (ink) tri-color ink",
+      "proposed_entity_id": "sensor.printer_ink_tri_color_ink",
+      "apply": true,
+      "platform": "ipp",
+      "unique_id": "d5a968fa-edc3-75dd-bc6f-1a5ca48df4ad_marker_1",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.side_drive_battery",
+      "friendly_name": "Pump Run Battery",
+      "proposed_entity_id": "sensor.pump_run_battery",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070-battery",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.side_drive_last_activity",
+      "friendly_name": "Pump Run Last activity",
+      "proposed_entity_id": "sensor.pump_run_last_activity",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070-last_activity",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_cabinet_1_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Cabinet 1 This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_cabinet_1_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2602_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_cabinet_1_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Cabinet 1 Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_cabinet_1_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2602_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_cabinet_2_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Cabinet 2 This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_cabinet_2_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2601_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_cabinet_2_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Cabinet 2 Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_cabinet_2_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2601_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_cabinet_light_printer_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Cabinet Light/ printer This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_cabinet_light_printer_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2604_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_cabinet_light_printer_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Cabinet Light/ printer Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_cabinet_light_printer_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2604_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_fan_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Fan This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_fan_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2600_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_fan_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Fan Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_fan_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2600_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_hue_go_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Hue Go This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_hue_go_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2603_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_hue_go_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Hue Go Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_hue_go_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2603_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "60:83:E7:9D:CE:35_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "60:83:E7:9D:CE:35_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_window_this_month_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Window This month's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_window_this_months_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2605_consumption_this_month",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "sensor.tp_link_power_strip_ce35_window_today_s_consumption",
+      "friendly_name": "TP-LINK_Power Strip_CE35 Window Today's consumption",
+      "proposed_entity_id": "sensor.tp_link_power_strip_ce35_window_todays_consumption",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "800652E101AF1A47C3490D5654AAA13022E70E2605_today_energy_kwh",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "siren.back_yard_siren",
+      "friendly_name": "Trash Run Siren",
+      "proposed_entity_id": "siren.trash_run_siren",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "siren.front_drive_garage_siren",
+      "friendly_name": "Front Drive Siren",
+      "proposed_entity_id": "siren.front_drive_siren",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "siren.front_drive_right_siren",
+      "friendly_name": "Back Porch Siren",
+      "proposed_entity_id": "siren.back_porch_siren",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "siren.side_drive_siren",
+      "friendly_name": "Pump Run Siren",
+      "proposed_entity_id": "siren.pump_run_siren",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.back_yard_motion_detection",
+      "friendly_name": "Trash Run Motion detection",
+      "proposed_entity_id": "switch.trash_run_motion_detection",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364401065-motion_detection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.cora_s_room",
+      "friendly_name": "Cora's room",
+      "proposed_entity_id": "switch.coras_room",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "D8:44:89:9E:04:A7",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.cora_s_room_led",
+      "friendly_name": "Cora's room LED",
+      "proposed_entity_id": "switch.coras_room_led",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "D8:44:89:9E:04:A7_led",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.front_drive_garage_motion_detection",
+      "friendly_name": "Front Drive Motion detection",
+      "proposed_entity_id": "switch.front_drive_motion_detection",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364380360-motion_detection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.front_drive_right_motion_detection",
+      "friendly_name": "Back Porch Motion detection",
+      "proposed_entity_id": "switch.back_porch_motion_detection",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364389490-motion_detection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.garage_drink_fridge",
+      "friendly_name": "Drink Fridge",
+      "proposed_entity_id": "switch.drink_fridge",
+      "apply": true,
+      "platform": "smartthings",
+      "unique_id": "3fec6b8d-6399-4124-b1d8-4dc3330a6a51_main_switch_switch_switch",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.grow_lights",
+      "friendly_name": "Plant Stand",
+      "proposed_entity_id": "switch.plant_stand_2",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:C7:BF:C9:DC:61",
+      "disabled": false,
+      "note": "'switch.plant_stand' is taken; using Home Assistant's _2 suffix"
+    },
+    {
+      "entity_id": "switch.grow_lights_led",
+      "friendly_name": "Plant Stand LED",
+      "proposed_entity_id": "switch.plant_stand_led",
+      "apply": true,
+      "platform": "tplink",
+      "unique_id": "50:C7:BF:C9:DC:61_led",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "switch.side_drive_motion_detection",
+      "friendly_name": "Pump Run Motion detection",
+      "proposed_entity_id": "switch.pump_run_motion_detection",
+      "apply": true,
+      "platform": "ring",
+      "unique_id": "364396070-motion_detection",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "todo.apps_sage",
+      "friendly_name": "App - Sage",
+      "proposed_entity_id": "todo.app_sage",
+      "apply": true,
+      "platform": "local_todo",
+      "unique_id": "01KZWZSN1SYGENZ8WE83VHK6QA",
+      "disabled": false,
+      "note": ""
+    },
+    {
+      "entity_id": "update.garage_drink_fridge_firmware",
+      "friendly_name": "Drink Fridge Firmware",
+      "proposed_entity_id": "update.drink_fridge_firmware",
+      "apply": true,
+      "platform": "smartthings",
+      "unique_id": "3fec6b8d-6399-4124-b1d8-4dc3330a6a51_main",
+      "disabled": false,
+      "note": ""
+    }
+  ]
+}
